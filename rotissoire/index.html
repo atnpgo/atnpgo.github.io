@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html >
+    <head>
+        <meta charset="UTF-8">
+        <title>Rotissoire</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.5.13/clipboard.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.0/moment.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/css/bootstrap.min.css" integrity="sha384-AysaV+vQoT3kOAXZkl02PThvDr8HYKPZhNT5h/CXfBThSRXQ6jW5DO2ekP5ViFdi" crossorigin="anonymous">
+        <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css'>
+        <link rel='stylesheet prefetch' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+        <link rel='stylesheet prefetch' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+        <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+
+    <body>
+        <section class="jumbotron text-xs-center">
+            <div class="container">
+                <h1 class="jumbotron-heading">Rotissoire <i id="spinner" class="fa fa-spinner fa-spin" style="display:none"></i></h1>
+                <div id="generator">
+                    <div class="row">
+                        <a href="#" class="btn btn-primary" id="btn-build-draft">Create New</a>
+                        <a href="#" class="btn btn-primary" id="btn-join-draft">Join Existing</a>
+                    </div>
+                </div>
+                <div id="status" style="display:none">
+                    <div class="row">
+                        <div class="col-xs-5 col-lg-2">
+                            <div class="row" style="height:320px;overflow:auto;border-top:1px #333 solid;border-bottom:1px #333 solid;border-left:1px #333 solid;padding:0;margin-bottom:0">
+                                <ul id="drafters" class="drafters"></ul>
+                            </div>
+                            <div class="row" id="controls" style="display:none">
+                                <button class="btn btn-primary btn-sm" id="change-order">Change Order</button>
+                                <button class="btn btn-primary btn-sm" id="start-draft">Start Draft</button>
+                            </div>
+                        </div>
+                        <div class="col-xs-7 col-lg-10">
+                            <div class="row" style="height:320px;overflow:auto;border: 1px #333 solid;margin-bottom:0">
+                                <ul id="messages" class="messages"></ul>
+                            </div>
+                            <div class="row">
+                                <input type="text" class="form-control" id="message-input">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="album text-muted">
+            <div class="container">
+                <div id="list" role="tablist" aria-multiselectable="true">
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-w">
+                            White </a>
+                        <div id="collapse-w" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-u">
+                            Blue </a>
+                        <div id="collapse-u" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-b">
+                            Black </a>
+                        <div id="collapse-b" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-r">
+                            Red </a>
+                        <div id="collapse-r" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-g">
+                            Green </a>
+                        <div id="collapse-g" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-uw">
+                            Azorius (Blue-White) </a>
+                        <div id="collapse-uw" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-ub">
+                            Dimir (Blue-Black) </a>
+                        <div id="collapse-ub" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-br">
+                            Rakdos (Black-Red) </a>
+                        <div id="collapse-br" class="collapse" role="tabpanel">
+                            <div class="card-block">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-rg">
+                            Gruul (Red-Green) </a>
+                        <div id="collapse-rg" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-gw">
+                            Selesnya (Green-White) </a>
+                        <div id="collapse-gw" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-bw">
+                            Orzhov (Black-White) </a>
+                        <div id="collapse-bw" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-ur">
+                            Izzet (Blue-Red) </a>
+                        <div id="collapse-ur" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-bg">
+                            Golgari (Black-Green) </a>
+                        <div id="collapse-bg" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-rw">
+                            Boros (Red-White) </a>
+                        <div id="collapse-rw" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-ug">
+                            Simic (Blue-Green) </a>
+                        <div id="collapse-ug" class="collapse" role="tabpanel">
+                            <div class="card-block">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-tri">
+                            Tri-Couloured </a>
+                        <div id="collapse-tri" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-artifacts">
+                            Artifacts </a>
+                        <div id="collapse-artifacts" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-automatons">
+                            Artifact Creatures </a>
+                        <div id="collapse-automatons" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-other">
+                            Other Non-Land </a>
+                        <div id="collapse-other" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <a class="card-header" role="tab" data-toggle="collapse" href="#collapse-lands">
+                            Lands </a>
+                        <div id="collapse-lands" class="collapse" role="tabpanel">
+                            <div class="card-block row">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script type="template/x-handlebars" id="card-template">
+            <div data-multiverseid="{{multiverseid}}" class="card-view card col-xs-12 col-sm-6 col-md-4 col-xl-3">
+            <i class="fa fa-check success text-success animated bounceIn" style="display:none"></i>
+            <img src="{{imageUrl}}" alt="{{name}}">
+            <h3 class="truncate">{{name}}</h3>
+            </div>
+        </script>
+
+        <script type="template/x-handlebars" id="modal-template">
+            <div class="modal fade">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">{{name}}</h4>
+            </div>
+            <div class="modal-body">
+            <div class="row">
+            <div class="col-xs-6 image">
+            <img src="{{imageUrl}}" alt="{{name}}">
+            </div>
+            <div class="col-xs-6 info">
+            <h5>{{type}}</h5>
+            <p>{{{text}}}</p>
+            <p><i>{{{flavor}}}</i></p>
+            </div>
+            </div>
+            <div class="row">
+            <div class="col-xs-12">
+            <table class="table">
+            <thead>
+            <th colspan=2>
+            Rulings
+            </th>
+            </thead>
+            <tbody>
+            {{#each rulings}}
+            <tr>
+            <th scope="row">{{date}}</th>
+            <td>{{{text}}}</td>
+            </tr>
+            {{/each}}
+            </tbody>
+            </table>
+            </div>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Select Card</button>
+            </div>
+            </div>
+            </div>
+            </div>
+        </script>
+
+        <script type="template/x-handlebars" id="join-code-modal-template">
+            <div class="modal fade">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Room Code</h4>
+            </div>
+            <div class="modal-body">
+            <div class="input-group">
+            <input type="text" class="form-control" id="room-id" value="{{room}}">
+            <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button"  data-clipboard-target="#room-id" id="copy-room"><i class="fa fa-clipboard"></i></button>
+            </span>
+            </div>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary" style="display:none">Join</a>
+            </div>
+            </div>
+            </div>
+            </div>
+        </script>
+
+        <script type="template/x-handlebars" id="create-room-modal-template">
+            <div class="modal fade">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Create Room</h4>
+            </div>
+            <div class="modal-body">
+            <textarea id="card-list" class="form-control"></textarea>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Create</a>
+            </div>
+            </div>
+            </div>
+            </div>
+        </script>
+        
+        <script type="template/x-handlebars" id="change-order-modal-template">
+            <div class="modal fade">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+            <h4 class="modal-title">Change Order</h4>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button class="btn btn-primary">Apply</a>
+            </div>
+            </div>
+            </div>
+            </div>
+        </script>
+
+        <script src="https://www.gstatic.com/firebasejs/3.6.1/firebase.js"></script>
+        <script>
+// Initialize Firebase
+var config = {
+    apiKey: "AIzaSyBIN49wzJlustrl4MzJlR5Puq0Frp3PHws",
+    authDomain: "cube-drafter.firebaseapp.com",
+    databaseURL: "https://cube-drafter.firebaseio.com",
+    storageBucket: "cube-drafter.appspot.com",
+    messagingSenderId: "123184960512"
+};
+firebase.initializeApp(config);
+        </script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.5/js/bootstrap.min.js" integrity="sha384-BLiI7JTZm+JWlgKa0M0kGRpJbF2J8q+qreVrKBC47e3K6BW78kGLrCkeRX6I9RoK" crossorigin="anonymous"></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js'></script>
+        <script src='https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js'></script>
+
+        <script src="js/index.js"></script>
+
+    </body>
+</html>
