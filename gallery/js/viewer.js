@@ -221,7 +221,7 @@ var app = {
             app.subreddit = null;
             app.content.empty();
 
-            var sub = $('#load-subreddit').find('input').val();
+            var sub = $('#load-subreddit').find('input').val().trim();
             if (!sub.startsWith('/r/')) {
                 sub = '/r/' + sub;
             }
