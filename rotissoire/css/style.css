@@ -10,7 +10,7 @@
  *         _\///________\///________\///________\///_____\/////__\///_______________\////////////_________\/////_______
  */
 *:not(.fa) {
-  font-family: 'Open Sans', sans-serif !important; }
+  font-family: 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif !important; }
 
 .row {
   margin-bottom: 20pt; }
