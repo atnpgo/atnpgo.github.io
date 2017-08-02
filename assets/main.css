@@ -177,8 +177,7 @@ pre {
  * Site footer
  */
 .site-footer {
-  border-top: 1px solid #e8e8e8;
-  padding: 30px 0; }
+  border-top: 1px solid #e8e8e8; }
 
 .footer-heading {
   font-size: 18px;
@@ -195,7 +194,7 @@ pre {
 
 .footer-col {
   float: left;
-  margin-bottom: 15px;
+  margin-top: 7.5px;
   padding-left: 15px; }
 
 .footer-col-1 {
@@ -418,3 +417,13 @@ pre {
     color: #008080; }
   .highlight .il {
     color: #099; }
+
+a:not(:hover) {
+  color: #449d44 !important; }
+a:hover {
+  color: #7fc87f !important; }
+
+.post-list a:hover {
+  color: #357935 !important; }
+.post-list ~ p > a:hover {
+  color: #357935 !important; }
