@@ -11,15 +11,10 @@
 	<link rel="stylesheet" href="/assets/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
 	<link rel="canonical" href="https://atnpgo.github.io/blog.html">
 	<link rel="alternate" type="application/rss+xml" title="ATNPGO" href="/feed.xml">
-  
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  
-	
+    
 </head>
 
 	<body>
@@ -41,7 +36,7 @@
 					<a class="nav-link" target="_blank" href="/gallery/">r/Gallery</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" target="_blank" href="/rotissoire/">Rotissoire</a>
+					<a class="nav-link" target="_blank" href="/rotissoire/" data-toggle="tooltip" data-placement="bottom" title="pre-alpha software">Rotissoire <i class="fa fa-warning text-warning text-clear"></i></a>
 				</li>
 			</ul>
 		</div>
@@ -65,12 +60,15 @@
 					<p>I am happy to announce the release of <a href="https://github.com/Oproma/jQuery.MobileScheduler">jQuery.MobileScheduler</a>. 
 After scouring the web searching for a component that would meet our needs and coming back empty handed, I’ve decided to implement my own and received approval to open-source it. Tested on both iOS and Android through Cordova, the instantiation should be extremely straightforward.</p>
 
+<figure class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="nx">$</span><span class="p">(</span><span class="s1">'#calendar'</span><span class="p">).</span><span class="nx">MobileScheduler</span><span class="p">();</span></code></pre></figure>
+
+<p>You may learn more information by visiting the <a href="https://github.com/Oproma/jQuery.MobileScheduler">project’s page</a> or view an <a href="https://oproma.github.io/jQuery.MobileScheduler/">interactive demo</a> on your mobile device.</p>
 
 				</p>
 			</li>
 		
 	</ul>
-	<p class="rss-subscribe">subscribe <a href="/feed.xml">via RSS</a></p>
+	<p class="rss-subscribe text-clear">subscribe <a href="/feed.xml">via RSS</a></p>
 </div>
 
 		</main>
@@ -121,6 +119,14 @@ After scouring the web searching for a component that would meet our needs and c
 
 </footer>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+<script type="text/javascript">
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})</script>
 	</body>
 </html>
 

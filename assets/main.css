@@ -418,12 +418,28 @@ pre {
   .highlight .il {
     color: #099; }
 
-a:not(:hover) {
-  color: #449d44 !important; }
-a:hover {
-  color: #7fc87f !important; }
+main.container {
+  margin-bottom: 75px; }
 
-.post-list a:hover {
-  color: #357935 !important; }
-.post-list ~ p > a:hover {
-  color: #357935 !important; }
+.text-clear {
+  opacity: 0.65; }
+
+/*a {
+    &:not(:hover) {
+        color: #449d44 !important;
+    }
+    &:hover {
+        color: lighten(#449d44, 20%) !important;
+    }
+}
+
+.post-list {
+    & a {
+        &:hover {
+            color: darken(#449d44, 10%) !important;
+        }
+    }
+    & ~ p > a:hover {
+            color: darken(#449d44, 10%) !important;
+    }
+}*/

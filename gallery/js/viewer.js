@@ -87,7 +87,11 @@ var app = {
             callback(data.data.link);
         }).fail(function () {
             $.getJSON('https://api.imgur.com/3/gallery/' + id, function (data) {
-                callback(data.data.images[0].link);
+                var urls = [];
+                _.each(data.data.images, function(image){
+                    urls.push(image.link);
+                });
+                callback(urls);
             }).fail(function () {
                 callback(url);
             });
@@ -185,9 +189,20 @@ var app = {
             app.token = tok;
             var $last = $('.card a').last();
             _.each(links, function (link) {
-                var $card = $(app.cardTemplate(link));
-                $card.find('img').on("error", app.onImgError);
-                app.content.append($card);
+                if (_.isArray(link.url)) {
+                    _.each(link.url, function(lnk){
+                        var $card = $(app.cardTemplate({
+                            title: link.title,
+                            url: lnk
+                        }));
+                        $card.find('img').on("error", app.onImgError);
+                        app.content.append($card);
+                    });
+                } else {
+                    var $card = $(app.cardTemplate(link));
+                    $card.find('img').on("error", app.onImgError);
+                    app.content.append($card);
+                }
             });
             if (autoload === true) {
                 lightbox.start($last);
