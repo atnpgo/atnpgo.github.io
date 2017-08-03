@@ -434,7 +434,9 @@ a.navbar-brand {
 .active > a {
   color: #a3d7a3 !important; }
 
-.post-list a:hover, .post-content a:hover {
+.post-list a:not(:hover), .post-content a:not(:hover) {
   color: #449d44 !important; }
+.post-list a:hover, .post-content a:hover {
+  color: #5cb85c !important; }
 .post-list ~ p > a:hover, .post-content ~ p > a:hover {
   color: #449d44 !important; }
