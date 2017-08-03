@@ -424,22 +424,17 @@ main.container {
 .text-clear {
   opacity: 0.65; }
 
-/*a {
-    &:not(:hover) {
-        color: #449d44 !important;
-    }
-    &:hover {
-        color: lighten(#449d44, 20%) !important;
-    }
-}
+a:not(:hover) {
+  color: #5cb85c !important; }
+a:hover {
+  color: #a3d7a3 !important; }
+a.navbar-brand {
+  color: #a3d7a3 !important; }
 
-.post-list {
-    & a {
-        &:hover {
-            color: darken(#449d44, 10%) !important;
-        }
-    }
-    & ~ p > a:hover {
-            color: darken(#449d44, 10%) !important;
-    }
-}*/
+.active > a {
+  color: #a3d7a3 !important; }
+
+.post-list a:hover, .post-content a:hover {
+  color: #449d44 !important; }
+.post-list ~ p > a:hover, .post-content ~ p > a:hover {
+  color: #449d44 !important; }
