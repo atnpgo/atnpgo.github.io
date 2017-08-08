@@ -9,7 +9,7 @@ body, h1, h2, h3, h4, h5, h6, p, blockquote, pre, hr, dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font: 400 16px/1.5 "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font: 400 16px/1.5 "Libre Baskerville", serif;
   color: #333;
   background-color: #fdfdfd;
   -webkit-text-size-adjust: 100%;
@@ -54,6 +54,7 @@ li > ul, li > ol {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
+  font-family: "Playfair Display", serif !important;
   font-weight: 400; }
 
 /**
@@ -435,8 +436,8 @@ a.navbar-brand {
   color: #a3d7a3 !important; }
 
 .post-list a:not(:hover), .post-content a:not(:hover) {
-  color: #449d44 !important; }
+  color: #3d8b3d !important; }
 .post-list a:hover, .post-content a:hover {
-  color: #5cb85c !important; }
+  color: #2d672d !important; }
 .post-list ~ p > a:hover, .post-content ~ p > a:hover {
   color: #449d44 !important; }
