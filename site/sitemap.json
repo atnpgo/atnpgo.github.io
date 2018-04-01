@@ -6,7 +6,7 @@
         "/blog/",
         "https://atnpgo.github.io/NeoGutenberg/",
         "https://atnpgo.github.io/gallery/",
-        "https://atnpgo.github.io/rotissoire/"
+        "https://atnpgo.github.io/Rotissoire/"
     ],
     "pages": [
         {
@@ -56,7 +56,7 @@
             "title": "r/Gallery",
             "external": true
         }, {
-            "href": "https://atnpgo.github.io/rotissoire/",
+            "href": "https://atnpgo.github.io/Rotissoire/",
             "title": "Rotissoire",
             "external": true
         }
