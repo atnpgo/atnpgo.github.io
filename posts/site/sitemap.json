@@ -2,8 +2,8 @@
     "title": "ATNPGO",
     "operator": "Etienne Pageau",
     "navlinks": [
+        "https://atnpgo.github.io/NeoGutenberg/",
         "/",
-        "/blog/",
         "https://atnpgo.github.io/NeoGutenberg/",
         "https://atnpgo.github.io/gallery/",
         "https://atnpgo.github.io/Rotissoire/"
@@ -11,11 +11,6 @@
     "pages": [
         {
             "href": "/",
-            "title": "ATNPGO",
-            "source": "site/index.md",
-            "type": "page"
-        }, {
-            "href": "/blog/",
             "title": "Posts",
             "source": "site/blog.md",
             "type": "page"
