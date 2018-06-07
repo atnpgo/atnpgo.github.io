@@ -32,6 +32,7 @@
             "description": "The personal website of Etienne Pageau",
             "url": "https://atnpgo.github.io/"
             }
+
     </script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet" type="text/css">
     <link href="css/app.css" rel="stylesheet" type="text/css">
@@ -166,12 +167,30 @@
                         <label for="contact-message">Message</label>
                         <textarea name="1" class="form-control" id="contact-message" rows="3"></textarea>
                     </div>
-                    <input type="hidden" name="redirect" value="https://atnpgo.github.io/">
+                    <input type="hidden" name="redirect" value="https://atnpgo.github.io/#success">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-black">Send</button>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="dialog-title">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-sm">
+            <div class="modal-header">
+                <h5 class="modal-title" id="dialog-title">Received</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Your message was received.</p>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-outline-black">Ok</button>
+            </div>
         </div>
     </div>
 </div>
@@ -184,5 +203,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+<script type="application/javascript">if (window.location.hash === '#success') {
+
+}</script>
 </body>
 </html>
