@@ -25,13 +25,13 @@
     <meta property="og:locale" content="en_CA"/>
     <meta property="og:locale:alternate" content="fr_CA"/>
     <script type="application/ld+json">
-            {
+        {
             "@context": "http://schema.org",
             "@type": "WebSite",
             "name": "ATNPGO",
             "description": "The personal website of Etienne Pageau",
             "url": "https://atnpgo.github.io/"
-            }
+        }
 
     </script>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,700" rel="stylesheet" type="text/css">
@@ -46,8 +46,6 @@
             <nav class="nav nav-masthead justify-content-center">
                 <a class="nav-link active" href="#">Home</a>
                 <a class="nav-link" target="_blank" href="https://atnpgo.github.io/NeoGutenberg/">NeoGutenberg</a>
-                <!--a class="nav-link" target="_blank" href="https://atnpgo.github.io/gallery/">r/Gallery</a-->
-                <a class="nav-link" target="_blank" href="https://atnpgo.github.io/Rotissoire/">Rotissoire</a>
                 <a class="nav-link" data-toggle="modal" data-target="#contact-me" href="#">Contact</a>
             </nav>
         </div>
@@ -56,11 +54,13 @@
     <div class="content">
         <h5>ATNPGO is Etienne Pageau</h5>
         <p>
-            Etienne Pageau is a nerd who alternates between writing code and drinking scotch. He also occasionally
-            spends time outside. Follow his rantings on the various social media platforms linked bellow. Views
-            held anywhere may not be representative of any opinions actually held by any person, living, dead, or
-            any variation of the previous two options.
+            Etienne Pageau is a nerd who alternates between writing code and drinking scotch. He also occasionally spends time outside. Follow his rantings on the various social
+            media platforms linked bellow.
         </p>
+        <p class="text-secondary font-weight-light">
+            Views held anywhere may not be representative of any opinions actually held by any person, living, dead, or any variation of the previous two options.
+        </p>
+
         <div class="row">
             <div class="col-12 col-sm-6 mb-2">
                 <a href="https://www.instagram.com/atnpgo" target="_blank" class="btn btn-outline-instagram btn-block">
@@ -101,11 +101,6 @@
                 </a>
             </div>
             <div class="col-12 col-sm-6 mb-2">
-                <a href="posts/#/blog/" target="_blank" class="btn btn-outline-black btn-block">
-                    <i class="icon-earth mr-2"></i> Blog
-                </a>
-            </div>
-            <div class="col-12 col-sm-6 mb-2">
                 <a href="https://stackoverflow.com/users/1612263/atnpgo" target="_blank"
                    class="btn btn-outline-stackoverflow btn-block">
                     <i class="icon-stackoverflow mr-2"></i> StackOverflow
@@ -121,34 +116,14 @@
                     <i class="icon-twitch mr-2"></i> Twitch
                 </a>
             </div>
-            <div class="col-12 col-sm-6 mb-2">
-                <a href="https://atnpgo.tumblr.com/" target="_blank" class="btn btn-outline-tumblr btn-block">
-                    <i class="icon-tumblr mr-2"></i> Tumblr
-                </a>
-            </div>
         </div>
     </div>
 
 
-</div>
-<div class="modal fade" id="snapcode" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="snap-title">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-lg">
-            <div class="modal-header">
-                <h5 class="modal-title" id="snap-title">Snapchat ATNPGO</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <img src="img/snapcode.svg" alt="Snapcode for ATNPGO" class="img-fluid">
-            </div>
-        </div>
-    </div>
 </div>
 <div class="modal fade" id="contact-me" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="contact-title">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-lg">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="contact-title">Contact Me</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -166,7 +141,7 @@
                         <label for="contact-message">Message</label>
                         <textarea name="1" class="form-control" id="contact-message" rows="3"></textarea>
                     </div>
-                    <input type="hidden" name="redirect" value="https://atnpgo.github.io/#success">
+                    <input type="hidden" name="redirect" value="https://atnpgo.wtf/#success">
                 </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-outline-black">Send</button>
@@ -175,9 +150,9 @@
         </div>
     </div>
 </div>
-<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="dialog-title">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-sm">
+<div class="modal fade" id="succ-dialog" tabindex="-1" role="dialog" aria-hidden="true" aria-labelledby="dialog-title">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="dialog-title">Received</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -202,8 +177,6 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-<script type="application/javascript">if (window.location.hash === '#success') {
-
-}</script>
+<script type="application/javascript">if (window.location.hash === '#success') $('#succ-dialog').modal();</script>
 </body>
 </html>
