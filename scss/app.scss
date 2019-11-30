@@ -1,12 +1,12 @@
 /*
-_____/\\\\\\\\\_____/\\\\\\\\\\\\\\\__/\\\\\_____/\\\__/\\\\\\\\\\\\\_______/\\\\\\\\\\\\_______/\\\\\______        
- ___/\\\\\\\\\\\\\__\///////\\\/////__\/\\\\\\___\/\\\_\/\\\/////////\\\___/\\\//////////______/\\\///\\\____       
-  __/\\\/////////\\\_______\/\\\_______\/\\\/\\\__\/\\\_\/\\\_______\/\\\__/\\\_______________/\\\/__\///\\\__      
-   _\/\\\_______\/\\\_______\/\\\_______\/\\\//\\\_\/\\\_\/\\\\\\\\\\\\\/__\/\\\____/\\\\\\\__/\\\______\//\\\_     
-    _\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\\//\\\\/\\\_\/\\\/////////____\/\\\___\/////\\\_\/\\\_______\/\\\_    
-     _\/\\\/////////\\\_______\/\\\_______\/\\\_\//\\\/\\\_\/\\\_____________\/\\\_______\/\\\_\//\\\______/\\\__   
-      _\/\\\_______\/\\\_______\/\\\_______\/\\\__\//\\\\\\_\/\\\_____________\/\\\_______\/\\\__\///\\\__/\\\____  
-       _\/\\\_______\/\\\_______\/\\\_______\/\\\___\//\\\\\_\/\\\_____________\//\\\\\\\\\\\\/_____\///\\\\\/_____ 
+_____/\\\\\\\\\_____/\\\\\\\\\\\\\\\__/\\\\\_____/\\\__/\\\\\\\\\\\\\_______/\\\\\\\\\\\\_______/\\\\\______
+ ___/\\\\\\\\\\\\\__\///////\\\/////__\/\\\\\\___\/\\\_\/\\\/////////\\\___/\\\//////////______/\\\///\\\____
+  __/\\\/////////\\\_______\/\\\_______\/\\\/\\\__\/\\\_\/\\\_______\/\\\__/\\\_______________/\\\/__\///\\\__
+   _\/\\\_______\/\\\_______\/\\\_______\/\\\//\\\_\/\\\_\/\\\\\\\\\\\\\/__\/\\\____/\\\\\\\__/\\\______\//\\\_
+    _\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\\//\\\\/\\\_\/\\\/////////____\/\\\___\/////\\\_\/\\\_______\/\\\_
+     _\/\\\/////////\\\_______\/\\\_______\/\\\_\//\\\/\\\_\/\\\_____________\/\\\_______\/\\\_\//\\\______/\\\__
+      _\/\\\_______\/\\\_______\/\\\_______\/\\\__\//\\\\\\_\/\\\_____________\/\\\_______\/\\\__\///\\\__/\\\____
+       _\/\\\_______\/\\\_______\/\\\_______\/\\\___\//\\\\\_\/\\\_____________\//\\\\\\\\\\\\/_____\///\\\\\/_____
         _\///________\///________\///________\///_____\/////__\///_______________\////////////_________\/////_______
 */
 $font-family-sans-serif: 'Open Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -34,41 +34,40 @@ $font-weight-bold: 700;
 $font-weight-normal: 300;
 $font-weight-light: 300;
 
-@import "./bootstrap-4.1.1/_functions.scss";
-@import "./bootstrap-4.1.1/_variables.scss";
-@import "./bootstrap-4.1.1/_mixins.scss";
-@import "./bootstrap-4.1.1/_print.scss";
-@import "./bootstrap-4.1.1/_reboot.scss";
-@import "./bootstrap-4.1.1/_type.scss";
-@import "./bootstrap-4.1.1/_images.scss";
-@import "./bootstrap-4.1.1/_code.scss";
-@import "./bootstrap-4.1.1/_grid.scss";
-@import "./bootstrap-4.1.1/_tables.scss";
-@import "./bootstrap-4.1.1/_forms.scss";
-@import "./bootstrap-4.1.1/_buttons.scss";
-@import "./bootstrap-4.1.1/_transitions.scss";
-@import "./bootstrap-4.1.1/_dropdown.scss";
-@import "./bootstrap-4.1.1/_button-group.scss";
-@import "./bootstrap-4.1.1/_input-group.scss";
-@import "./bootstrap-4.1.1/_custom-forms.scss";
-@import "./bootstrap-4.1.1/_nav.scss";
-@import "./bootstrap-4.1.1/_navbar.scss";
-@import "./bootstrap-4.1.1/_card.scss";
-@import "./bootstrap-4.1.1/_breadcrumb.scss";
-@import "./bootstrap-4.1.1/_pagination.scss";
-@import "./bootstrap-4.1.1/_badge.scss";
-@import "./bootstrap-4.1.1/_jumbotron.scss";
-@import "./bootstrap-4.1.1/_alert.scss";
-@import "./bootstrap-4.1.1/_progress.scss";
-@import "./bootstrap-4.1.1/_media.scss";
-@import "./bootstrap-4.1.1/_list-group.scss";
-@import "./bootstrap-4.1.1/_close.scss";
-@import "./bootstrap-4.1.1/_modal.scss";
-@import "./bootstrap-4.1.1/_tooltip.scss";
-@import "./bootstrap-4.1.1/_popover.scss";
-@import "./bootstrap-4.1.1/_carousel.scss";
-@import "./bootstrap-4.1.1/_utilities.scss";
-
+@import "./bootstrap-4.4.1/_functions.scss";
+@import "./bootstrap-4.4.1/_variables.scss";
+@import "./bootstrap-4.4.1/_mixins.scss";
+@import "./bootstrap-4.4.1/_print.scss";
+@import "./bootstrap-4.4.1/_reboot.scss";
+@import "./bootstrap-4.4.1/_type.scss";
+@import "./bootstrap-4.4.1/_images.scss";
+@import "./bootstrap-4.4.1/_code.scss";
+@import "./bootstrap-4.4.1/_grid.scss";
+@import "./bootstrap-4.4.1/_tables.scss";
+@import "./bootstrap-4.4.1/_forms.scss";
+@import "./bootstrap-4.4.1/_buttons.scss";
+@import "./bootstrap-4.4.1/_transitions.scss";
+@import "./bootstrap-4.4.1/_dropdown.scss";
+@import "./bootstrap-4.4.1/_button-group.scss";
+@import "./bootstrap-4.4.1/_input-group.scss";
+@import "./bootstrap-4.4.1/_custom-forms.scss";
+@import "./bootstrap-4.4.1/_nav.scss";
+@import "./bootstrap-4.4.1/_navbar.scss";
+@import "./bootstrap-4.4.1/_card.scss";
+@import "./bootstrap-4.4.1/_breadcrumb.scss";
+@import "./bootstrap-4.4.1/_pagination.scss";
+@import "./bootstrap-4.4.1/_badge.scss";
+@import "./bootstrap-4.4.1/_jumbotron.scss";
+@import "./bootstrap-4.4.1/_alert.scss";
+@import "./bootstrap-4.4.1/_progress.scss";
+@import "./bootstrap-4.4.1/_media.scss";
+@import "./bootstrap-4.4.1/_list-group.scss";
+@import "./bootstrap-4.4.1/_close.scss";
+@import "./bootstrap-4.4.1/_modal.scss";
+@import "./bootstrap-4.4.1/_tooltip.scss";
+@import "./bootstrap-4.4.1/_popover.scss";
+@import "./bootstrap-4.4.1/_carousel.scss";
+@import "./bootstrap-4.4.1/_utilities.scss";
 html {
     padding: 0;
     margin: 0;
@@ -80,10 +79,15 @@ html {
     }
     > body {
         display: flex;
+        flex-direction: column;
         min-height: 100%;
-        background-color: $body-bg;
+        //background-color: $body-bg;
         padding: 0;
         margin: 0;
+    
+        background-color: #404040;
+        background-image: url("../pdfjs/web/images/texture.png");
+        
         font: {
             family: $font-family-base;
             size: 16px;
@@ -94,6 +98,11 @@ html {
             }
         }
     }
+}
+
+.modal-content {
+    background-color: #404040;
+    background-image: url("../pdfjs/web/images/texture.png");
 }
 
 .masthead {
@@ -145,28 +154,24 @@ h1, h2, h3, h4, h5, h6 {
 
 $brands: () !default;
 $brands: map-merge((
-        "facebook": #3B5998,
-        "instagram": #E4405F,
-        "twitter": #1DA1F2,
-        "snapchat": #FFFC00,
-        "github": #4078C0,
-        "linkedin": #0077B5,
-        "youtube": #FF0000,
-        "stackoverflow": #FE7A16,
-        "reddit": #FF4500,
-        "twitch": #6441a4,
-        "tumblr": #36465d
+        "snapchat": (#FFFC00, #333333),
+        "instagram": (#E4405F, #FFFFFF),
+        "github": (#4078C0, #FFFFFF),
+        "linkedin": (#0077B5, #FFFFFF),
+        "youtube": (#FF0000, #FFFFFF)
 ), $brands);
 
 @each $color, $value in $brands {
     .btn-outline-#{$color} {
-        @include button-outline-variant($value, $body-bg);
-        &:hover > i::before {
-            color: $white;
+        @include button-outline-variant(nth($value, 1), $body-bg);
+        &:hover {
+            color: nth($value, 2);
+            & i:before {
+                color: nth($value, 2);
+            }
         }
     }
 }
-
 .btn-outline-black {
     @include button-outline-variant($black, $white);
 }
