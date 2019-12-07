@@ -85,8 +85,8 @@ html {
         padding: 0;
         margin: 0;
     
-        background-color: #404040;
-        background-image: url("../pdfjs/web/images/texture.png");
+        //background-color: #404040;
+        //background-image: url("../pdfjs/web/images/texture.png");
         
         font: {
             family: $font-family-base;
@@ -100,10 +100,10 @@ html {
     }
 }
 
-.modal-content {
+/*.modal-content {
     background-color: #404040;
     background-image: url("../pdfjs/web/images/texture.png");
-}
+}*/
 
 .masthead {
     margin-bottom: 2rem;
@@ -174,4 +174,12 @@ $brands: map-merge((
 }
 .btn-outline-black {
     @include button-outline-variant($black, $white);
+}
+
+b, strong {
+    font-weight: 700;
+}
+
+p {
+    text-indent: 1rem;
 }
