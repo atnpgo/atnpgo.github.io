@@ -388,15 +388,16 @@ a.close:hover {
 }
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.eot?v3dx47");
-  src: url("fonts/icomoon.eot?v3dx47#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?v3dx47") format("truetype"), url("fonts/icomoon.woff?v3dx47") format("woff"), url("fonts/icomoon.svg?v3dx47#icomoon") format("svg");
+  src: url("fonts/icomoon.eot?uch75b");
+  src: url("fonts/icomoon.eot?uch75b#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?uch75b") format("truetype"), url("fonts/icomoon.woff?uch75b") format("woff"), url("fonts/icomoon.svg?uch75b#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
+  font-display: block;
 }
 [class^=icon-], [class*=" icon-"] {
   /* use !important to prevent issues with browser extensions that change fonts */
   font-family: "icomoon" !important;
-  speak: none;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
@@ -407,63 +408,48 @@ a.close:hover {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-earth:before {
-  content: "";
-}
-
-.icon-facebook:before {
-  content: "";
-  color: #3B5998;
-}
-
-.icon-github:before {
-  content: "";
-  color: #4078C0;
-}
-
-.icon-instagram:before {
-  content: "";
-  color: #E4405F;
-}
-
-.icon-linkedin:before {
-  content: "";
-  color: #0077B5;
-}
-
-.icon-reddit:before {
-  content: "";
-  color: #FF4500;
-}
-
-.icon-snapchat:before {
-  content: "";
-  color: #FFFC00;
-}
-
-.icon-stackoverflow:before {
-  content: "";
-  color: #FE7A16;
-}
-
-.icon-tumblr:before {
-  content: "";
-  color: #36465d;
+.icon-play:before {
+  content: "";
 }
 
 .icon-twitch:before {
-  content: "";
+  content: "";
   color: #6441A4;
 }
 
+.icon-reddit:before {
+  content: "";
+  color: #FF4500;
+}
+
 .icon-twitter:before {
-  content: "";
+  content: "";
   color: #1DA1F2;
 }
 
 .icon-youtube:before {
-  content: "";
+  content: "";
   color: #FF0000;
+}
+
+.icon-linkedin:before {
+  content: "";
+  color: #0077B5;
+}
+
+.icon-github:before {
+  content: "";
+  color: #4078C0;
+}
+
+.icon-snapchat:before {
+  content: "";
+  color: #FFFC00;
+}
+
+.icon-instagram:before {
+  content: "";
+  color: #E4405F;
 }
 
 /*# sourceMappingURL=App.css.map */

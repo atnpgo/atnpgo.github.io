@@ -26,7 +26,6 @@ $linkedin: #0077B5;
 $youtube: #FF0000;
 $facebook: #3B5998;
 $reddit: #FF4500;
-$stackoverflow: #FE7A16;
 $twitch: #6441A4;
 $twitter: #1DA1F2;
 
@@ -462,19 +461,20 @@ $animation-timing: 1s;
 
 @font-face {
     font-family: 'icomoon';
-    src: url('fonts/icomoon.eot?v3dx47');
-    src: url('fonts/icomoon.eot?v3dx47#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?v3dx47') format('truetype'),
-    url('fonts/icomoon.woff?v3dx47') format('woff'),
-    url('fonts/icomoon.svg?v3dx47#icomoon') format('svg');
+    src:  url('fonts/icomoon.eot?uch75b');
+    src:  url('fonts/icomoon.eot?uch75b#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?uch75b') format('truetype'),
+    url('fonts/icomoon.woff?uch75b') format('woff'),
+    url('fonts/icomoon.svg?uch75b#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
+    font-display: block;
 }
 
 [class^="icon-"], [class*=" icon-"] {
     /* use !important to prevent issues with browser extensions that change fonts */
     font-family: 'icomoon' !important;
-    speak: none;
+    speak: never;
     font-style: normal;
     font-weight: normal;
     font-variant: normal;
@@ -486,61 +486,38 @@ $animation-timing: 1s;
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-earth:before {
-    content: "\e90b";
-}
-
-.icon-facebook:before {
-    content: "\e900";
-    color: $facebook;
-}
-
-.icon-github:before {
-    content: "\e901";
-    color: $github;
-}
-
-.icon-instagram:before {
-    content: "\e902";
-    color: $instagram;
-}
-
-.icon-linkedin:before {
-    content: "\e903";
-    color: $linkedin;
-}
-
-.icon-reddit:before {
-    content: "\e904";
-    color: $reddit;
-}
-
-.icon-snapchat:before {
-    content: "\e905";
-    color: $snapchat;
-}
-
-.icon-stackoverflow:before {
-    content: "\e906";
-    color: $stackoverflow;
-}
-
-.icon-tumblr:before {
-    content: "\e907";
-    color: #36465d;
-}
-
-.icon-twitch:before {
+.icon-play:before {
     content: "\e908";
+}
+.icon-twitch:before {
+    content: "\e900";
     color: $twitch;
 }
-
+.icon-reddit:before {
+    content: "\e901";
+    color: $reddit;
+}
 .icon-twitter:before {
-    content: "\e909";
+    content: "\e902";
     color: $twitter;
 }
-
 .icon-youtube:before {
-    content: "\e90a";
+    content: "\e903";
     color: $youtube;
+}
+.icon-linkedin:before {
+    content: "\e904";
+    color: $linkedin;
+}
+.icon-github:before {
+    content: "\e905";
+    color: $github
+}
+.icon-snapchat:before {
+    content: "\e906";
+    color: $snapchat;
+}
+.icon-instagram:before {
+    content: "\e907";
+    color: $instagram;
 }

@@ -25,7 +25,6 @@ const THEME = {
         youtube: generateColor('#FF0000'),
         facebook: generateColor('#3B5998'),
         reddit: generateColor('#FF4500'),
-        stackoverflow: generateColor('#FE7A16'),
         twitch: generateColor('#6441A4'),
         twitter: generateColor('#1DA1F2')
     },
@@ -41,7 +40,6 @@ const THEME = {
         youtube: generateBackground('#800000'),
         facebook: generateBackground('#283B66'),
         reddit: generateBackground('#FF4500'),
-        stackoverflow: generateBackground('#661B00'),
         twitch: generateBackground('#3E2966'),
         twitter: generateBackground('#0C4466')
     },

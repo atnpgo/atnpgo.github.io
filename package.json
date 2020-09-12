@@ -15,7 +15,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "build": "mv ./build/.git ./git-old && react-scripts build && mv ./git-old ./build/.git",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

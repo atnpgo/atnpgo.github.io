@@ -9,7 +9,7 @@ import Words from './arwes/packages/arwes/src/Words';
 import Link from './arwes/packages/arwes/src/Link';
 import Appear from './arwes/packages/arwes/src/Appear';
 import Image from './arwes/packages/arwes/src/Image';
-import VideoCaption from './arwes/packages/arwes/src/VideoCaption';
+import Video from './arwes/packages/arwes/src/Video';
 import Heading from './arwes/packages/arwes/src/Heading';
 
 const ANIMATION_TIME = 350;
@@ -84,7 +84,8 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='linkedin' show={anim.entered} onClick={() => open('https://www.linkedin.com/in/etiennepageau/')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer='linkedin' show={anim.entered}
+                                             onClick={() => open('https://www.linkedin.com/in/etiennepageau/')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-linkedin'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -542,96 +543,37 @@ class ModalHolder extends React.Component {
                                                                             {anim => (
                                                                                 <Fragment>
                                                                                     <Image layer='primary' animate show={anim.entered} resources='/images/IMG_3431.jpeg'>
-                                                                                        {anim => (
-                                                                                            <p><Words animate show={anim.entered}>A loaf of bread baked from scratch. Flour, water,
-                                                                                                yeast, salt, heat and vapour.</Words></p>
-                                                                                        )}
+                                                                                        <p><Words animate show={anim.entered}>
+                                                                                            A loaf of bread baked from scratch. Flour, water, yeast, salt, heat and vapour.
+                                                                                        </Words></p>
                                                                                     </Image>
-                                                                                    <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
-                                                                                        {anim => (
-                                                                                            <Fragment>
-                                                                                                <Image layer='primary' animate show={anim.entered}
-                                                                                                       resources='/images/IMG_3411.jpeg'>
-                                                                                                    {anim => (
-                                                                                                        <p><Words animate show={anim.entered}>Bacon-mozzarella grilled cheese
-                                                                                                            sandwich made from the previous loaf of bread.</Words></p>
-                                                                                                    )}
-                                                                                                </Image>
-                                                                                            </Fragment>
-                                                                                        )}
-                                                                                    </Animation>
-
+                                                                                    <Image layer='primary' animate show={anim.entered} resources='/images/IMG_3411.jpeg'>
+                                                                                        <p><Words animate show={anim.entered}>
+                                                                                            Bacon-mozzarella grilled cheese sandwich made from the previous loaf of bread.
+                                                                                        </Words></p>
+                                                                                    </Image>
                                                                                 </Fragment>
                                                                             )}
                                                                         </Project>
-                                                                        <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
-                                                                            {anim => (
-                                                                                <Fragment>
-                                                                                    <Project show={anim.entered} animate header='DIGITAL ARTS' style={{margin: '0 auto'}}>
-                                                                                        {anim => (
-                                                                                            <Fragment>
-                                                                                                <Image layer='primary' animate show={anim.entered}
-                                                                                                       resources='/images/hangman-bubbly.jpeg'>
-                                                                                                    {anim => (
-                                                                                                        <p><Words animate show={anim.entered}>Fake western movie poster themed with
-                                                                                                            characters from All Elite Wrestling.</Words></p>
-                                                                                                    )}
-                                                                                                </Image>
-                                                                                                <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
-                                                                                                    {anim => (
-                                                                                                        <Fragment>
-                                                                                                            <Image layer='primary' animate show={anim.entered}
-                                                                                                                   resources='/images/youtube%20banner.jpeg'>
-                                                                                                                {anim => (
-                                                                                                                    <p><Words animate show={anim.entered}>Full-sized version of my
-                                                                                                                        YouTube banner.</Words></p>
-                                                                                                                )}
-                                                                                                            </Image>
-                                                                                                            <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
-                                                                                                                {anim => (
-                                                                                                                    <Fragment>
-                                                                                                                        <Image layer='primary' animate show={anim.entered}
-                                                                                                                               resources='/images/slut_hut.jpeg'>
-                                                                                                                            {anim => (
-                                                                                                                                <p><Words animate show={anim.entered}>Vaporwave
-                                                                                                                                    themed poster for a community wrestling event
-                                                                                                                                    in-game.</Words></p>
-                                                                                                                            )}
-                                                                                                                        </Image>
-                                                                                                                        <Animation animate={true} show={anim.entered}
-                                                                                                                                   timeout={ANIMATION_TIME}>
-                                                                                                                            {anim => (
-                                                                                                                                <Fragment>
-                                                                                                                                    <VideoCaption layer='primary'
-                                                                                                                                                  vidProps={{
-                                                                                                                                                      muted: 'muted',
-                                                                                                                                                      autoPlay: 'autoplay',
-                                                                                                                                                      loop: 'loop',
-                                                                                                                                                      playsInline: true
-                                                                                                                                                  }}
-                                                                                                                                                  animate show={anim.entered}
-                                                                                                                                                  resources='/images/trash.mp4'>
-                                                                                                                                        {anim => (
-                                                                                                                                            <p><Words animate show={anim.entered}>Vaporwave
-                                                                                                                                                aestethic video vignette.</Words>
-                                                                                                                                            </p>
-                                                                                                                                        )}
-                                                                                                                                    </VideoCaption>
-                                                                                                                                </Fragment>
-                                                                                                                            )}
-                                                                                                                        </Animation>
-                                                                                                                    </Fragment>
-                                                                                                                )}
-                                                                                                            </Animation>
-                                                                                                        </Fragment>
-                                                                                                    )}
-                                                                                                </Animation>
-                                                                                            </Fragment>
-                                                                                        )}
-                                                                                    </Project>
-                                                                                </Fragment>
-                                                                            )}
-                                                                        </Animation>
+                                                                        <Project header='DIGITAL ARTS' style={{margin: '0 auto'}}>
+                                                                            <Image layer='primary' resources='/images/hangman-bubbly.jpeg'>
+                                                                                <p>Fake western movie poster themed with characters from All Elite Wrestling.</p>
+                                                                            </Image>
+                                                                            <Image layer='primary' resources='/images/youtube%20banner.jpeg'>
+                                                                                <p>YouTube banner.</p>
+                                                                            </Image>
+                                                                            <Image layer='primary' resources='/images/slut_hut.jpeg'>
+                                                                                <p>Vaporwave themed poster for a community wrestling event in-game.</p>
+                                                                            </Image>
+                                                                            <Video layer='primary' caption={'Vaporwave aestethic video vignette.'} vidProps={{
+                                                                                muted: 'muted',
+                                                                                autoPlay: 'autoplay',
+                                                                                loop: 'loop',
+                                                                                playsInline: true
+                                                                            }}>
+                                                                                <source src='/images/trash.mp4' type='video/mp4'/>
+                                                                            </Video>
+                                                                        </Project>
                                                                     </Fragment>
                                                                 )}
                                                             </Animation>

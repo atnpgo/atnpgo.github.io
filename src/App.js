@@ -86,36 +86,45 @@ class AppWrapper extends React.Component {
                 let entropyY = 0;
                 let entropyX = 0;
 
+                const X_MAX = 50;
+                const Y_MAX = 120;
+
                 document.addEventListener('mousemove', e => {
-                    entropyY += Math.abs(e.movementY);
-                    if (entropyY > 110) {
-                        entropyY = 110;
+                    entropyY += Math.abs(e.movementY / window.innerHeight * Y_MAX);
+                    if (entropyY > Y_MAX) {
+                        entropyY = Y_MAX;
                     }
-                    entropyX += Math.abs(e.movementX / 5);
-                    if (entropyX > 40) {
-                        entropyX = 40;
+                    entropyX += Math.abs(e.movementX / window.innerWidth * X_MAX);
+                    if (entropyX > X_MAX) {
+                        entropyX = X_MAX;
                     }
                 });
 
                 document.addEventListener('click', e => {
-                    entropyY = 110;
-                    entropyX = 40;
+                    entropyY = Y_MAX;
+                    entropyX = X_MAX;
+                });
+
+                document.addEventListener('touchstart', e => {
+                    entropyY = Y_MAX;
+                    entropyX = X_MAX;
                 });
 
 
                 const decay = () => {
-                    entropyY -= 8;
+                    entropyY--;
                     if (entropyY < 0) {
                         entropyY = 0;
                     }
-                    entropyX -= 4;
+                    entropyX--;
                     if (entropyX < 0) {
                         entropyX = 0;
                     }
 
                     wave.setSpeed(entropyX / 100 + 0.1);
                     wave.setAmplitude(entropyY / 100 + 0.1);
-                    setTimeout(() => window.requestAnimationFrame(decay), 50);
+
+                    window.requestAnimationFrame(decay);
                 };
                 decay();
 
@@ -160,7 +169,8 @@ class AppWrapper extends React.Component {
                                     {anim => (
                                         <div style={{display: 'flex', justifyContent: 'center'}}>
                                             <HoverButton animate layer='primary' show={anim.entered} onClick={() => this.setState({launched: true})}>
-                                                {anim => <Words animate show={anim.entered}>▶ Launch</Words>}
+                                                {anim => <Fragment><i className={'icon-play'} style={{marginRight: '0.5rem'}}/>
+                                                    <Words animate show={anim.entered}>Launch</Words></Fragment>}
                                             </HoverButton>
                                         </div>
                                     )}
@@ -273,7 +283,7 @@ class App extends React.Component {
                         </div>
                         <Footer className={'slideInBottom'}>
                             <span></span>
-                            <span>© 2020 Etienne Pageau</span>
+                            <span style={{fontSize: '0.6rem'}}>oc © 2020 Etienne Pageau</span>
                         </Footer>
 
 
