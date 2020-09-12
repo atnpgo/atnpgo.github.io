@@ -168,6 +168,16 @@ a.close:hover {
   }
 }
 
+.generic-bg, .sidebars > div > div:first-child, .low-wing > div:first-child, .wings > div > div {
+  background-color: #360800;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .slideInTop {
   will-change: transform;
   animation-name: slide-in-top;
@@ -182,14 +192,14 @@ a.close:hover {
   animation-timing-function: ease-in-out;
 }
 
-.slideInRight {
+.slideInRight, .sidebars > div:last-child {
   will-change: transform;
   animation-name: slide-in-right;
   animation-duration: 2s;
   animation-timing-function: ease-in-out;
 }
 
-.slideInLeft {
+.slideInLeft, .sidebars > div:first-child {
   will-change: transform;
   animation-name: slide-in-left;
   animation-duration: 2s;
@@ -272,15 +282,6 @@ a.close:hover {
 .wings > div:last-child > span {
   right: 0;
 }
-.wings > div > div {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #360800;
-  opacity: 0.6;
-}
 .wings > div > span {
   position: absolute;
   color: #F52400;
@@ -361,16 +362,62 @@ a.close:hover {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.low-wing > div:first-child {
-  background-color: #360800;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  bottom: 0;
+.sidebars {
+  position: fixed;
+  top: 8rem;
+  bottom: calc(2.9rem + 26vmin);
   left: 0;
   right: 0;
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 735px) {
+  .sidebars {
+    display: none !important;
+  }
+}
+.sidebars > div {
+  width: 4rem;
+  position: relative;
+}
+.sidebars > div:first-child {
+  border-right: 4px #761100 solid;
+}
+.sidebars > div:last-child {
+  border-left: 4px #761100 solid;
+}
+.sidebars > div > div:last-child {
+  display: flex;
+  height: calc(100% - 2rem);
+}
+.sidebars > div > div:last-child > p {
+  margin: 0.5rem 0.25rem !important;
+  transform: scaleX(-1);
+  position: relative;
+  height: 100%;
+  text-orientation: upright;
+  writing-mode: vertical-rl;
+  text-wrap: none;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.sidebars > div > div:last-child > p > span {
+  margin-bottom: 0.25rem;
+  will-change: opacity;
+  transition: opacity 500ms linear;
+  height: 1rem;
+  display: inline-block;
+  animation: flash-in linear 250ms;
 }
 
+@keyframes flash-in {
+  from {
+    color: silver;
+  }
+  to {
+    color: #F52400;
+  }
+}
 /**************************************
  *  Font faces                        *
  **************************************/

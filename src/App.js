@@ -25,8 +25,8 @@ import ModalHolder from './ModalHolder';
 import Video from './arwes/packages/arwes/src/Video';
 import moment from 'moment';
 import NotificationList from './NotificationList';
+import Fall from './Fall';
 
-let waveInitialized = false;
 
 class AppWrapper extends React.Component {
     constructor(props) {
@@ -68,81 +68,77 @@ class AppWrapper extends React.Component {
                 this.setState({loading: false});
             });
         } else {
-            const container = document.getElementById('siri-container');
-            if (!waveInitialized && container) {
-                waveInitialized = true;
-                const wave = new SiriWave({
-                    container,
-                    width: 100,
-                    height: 30,
-                    color: '#F52400',
-                    cover: true,
-                    autostart: true,
-                    speed: 0.1,
-                    amplitude: 0.1
-                });
+            const wave = new SiriWave({
+                container: document.getElementById('siri-container'),
+                width: 100,
+                height: 30,
+                color: '#F52400',
+                cover: true,
+                autostart: true,
+                speed: 0.1,
+                amplitude: 0.1
+            });
 
-                document.querySelector('#siri-container canvas').setAttribute('height', '40');
-                let entropyY = 0;
-                let entropyX = 0;
+            document.querySelector('#siri-container canvas').setAttribute('height', '40');
+            let entropyY = 0;
+            let entropyX = 0;
 
-                const X_MAX = 50;
-                const Y_MAX = 120;
+            const X_MAX = 50;
+            const Y_MAX = 120;
 
-                document.addEventListener('mousemove', e => {
-                    entropyY += Math.abs(e.movementY / window.innerHeight * Y_MAX);
-                    if (entropyY > Y_MAX) {
-                        entropyY = Y_MAX;
-                    }
-                    entropyX += Math.abs(e.movementX / window.innerWidth * X_MAX);
-                    if (entropyX > X_MAX) {
-                        entropyX = X_MAX;
-                    }
-                });
-
-                document.addEventListener('click', e => {
+            document.addEventListener('mousemove', e => {
+                entropyY += Math.abs(e.movementY / window.innerHeight * Y_MAX);
+                if (entropyY > Y_MAX) {
                     entropyY = Y_MAX;
+                }
+                entropyX += Math.abs(e.movementX / window.innerWidth * X_MAX);
+                if (entropyX > X_MAX) {
                     entropyX = X_MAX;
-                });
+                }
+            });
 
-                document.addEventListener('touchstart', e => {
-                    entropyY = Y_MAX;
-                    entropyX = X_MAX;
-                });
+            document.addEventListener('click', e => {
+                entropyY = Y_MAX;
+                entropyX = X_MAX;
+            });
+
+            document.addEventListener('touchstart', e => {
+                entropyY = Y_MAX;
+                entropyX = X_MAX;
+            });
 
 
-                const decay = () => {
-                    entropyY--;
-                    if (entropyY < 0) {
-                        entropyY = 0;
-                    }
-                    entropyX--;
-                    if (entropyX < 0) {
-                        entropyX = 0;
-                    }
+            const decay = () => {
+                entropyY--;
+                if (entropyY < 0) {
+                    entropyY = 0;
+                }
+                entropyX--;
+                if (entropyX < 0) {
+                    entropyX = 0;
+                }
 
-                    wave.setSpeed(entropyX / 100 + 0.1);
-                    wave.setAmplitude(entropyY / 100 + 0.1);
+                wave.setSpeed(entropyX / 100 + 0.1);
+                wave.setAmplitude(entropyY / 100 + 0.1);
 
-                    window.requestAnimationFrame(decay);
-                };
-                decay();
+                window.requestAnimationFrame(decay);
+            };
+            decay();
 
-                const timeSpan = document.querySelector('#time');
-                const setTime = () => {
-                    timeSpan.textContent = moment.utc().format('HH.mm.ss.SSS');
-                    window.requestAnimationFrame(setTime);
-                };
-                setTime();
+            const timeSpan = document.querySelector('#time');
+            const setTime = () => {
+                timeSpan.textContent = moment.utc().format('HH.mm.ss.SSS');
+                window.requestAnimationFrame(setTime);
+            };
+            setTime();
 
-                const dateSpan = document.querySelector('#date');
-                const setDate = () => {
-                    dateSpan.textContent = moment.utc().format('YYYY.MM.DD');
-                    setTimeout(window.requestAnimationFrame(setDate), 1000);
-                };
-                setDate();
+            const dateSpan = document.querySelector('#date');
+            const setDate = () => {
+                dateSpan.textContent = moment.utc().format('YYYY.MM.DD');
+                setTimeout(() => window.requestAnimationFrame(setDate), 1000);
+            };
+            setDate();
 
-            }
         }
     }
 
@@ -230,6 +226,16 @@ class App extends React.Component {
                         <Header animate className={'slideInTop'}>
                             <Heading node='h1' style={{margin: 0}}>ATNPGO</Heading>
                         </Header>
+                        <div className={'sidebars'}>
+                            <div>
+                                <div/>
+                                <Fall/>
+                            </div>
+                            <div>
+                                <div/>
+                                <Fall/>
+                            </div>
+                        </div>
                         <div className={'wings'}>
                             <div>
                                 <span id={'date'} style={{marginLeft: '0.5rem'}}/>
@@ -240,6 +246,7 @@ class App extends React.Component {
                                 <div/>
                             </div>
                         </div>
+
                         <div className={'auto-width'} style={{
                             margin: '2rem auto 4rem',
                             padding: '0 0.5rem',
@@ -292,11 +299,11 @@ class App extends React.Component {
                             <div id="siri-container"/>
                         </Frame>
 
-                        <div className={'low-wing right'} style={{position: 'fixed', bottom: '3.5rem', right: 0}}>
+                        <div className={'low-wing right'} style={{position: 'fixed', bottom: '2.9rem', right: 0}}>
                             <div/>
                             <div><NotificationList style={{height: '100%'}}/></div>
                         </div>
-                        <div className={'low-wing left'} style={{position: 'fixed', bottom: '3.5rem', left: 0}}>
+                        <div className={'low-wing left'} style={{position: 'fixed', bottom: '2.9rem', left: 0}}>
                             <div/>
                             <Video layer='primary'
                                    vidProps={{
@@ -308,7 +315,6 @@ class App extends React.Component {
                                    style={{height: '100%', width: '100%'}}
                                    animate show={anim.entered} className={''}>
                                 <source src='/images/planet.webm' type='video/webm'/>
-                                <source src="/images/planet.mov" type="video/quicktime"/>
                                 <source src="/images/planet.mp4" type="video/mp4"/>
                             </Video>
                         </div>
