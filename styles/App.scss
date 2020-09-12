@@ -198,6 +198,16 @@ a {
     }
 }
 
+.generic-bg {
+    background-color: $background;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
 $animation-timing: 1s;
 
 .slideInTop {
@@ -315,13 +325,7 @@ $animation-timing: 1s;
         }
         
         & > div {
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: $background;
-            opacity: 0.6;
+            @extend .generic-bg;
         }
         
         & > span {
@@ -428,14 +432,80 @@ $animation-timing: 1s;
     
     & > div {
         &:first-child {
-            background-color: $background;
-            opacity: 0.6;
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
+            @extend .generic-bg;
         }
+    }
+}
+
+
+.sidebars {
+    position: fixed;
+    top: 8rem;
+    bottom: calc(2.9rem + 26vmin);
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    
+    @media (max-width: 735px) {
+        display: none !important;
+    }
+    
+    & > div {
+        width: 4rem;
+        position: relative;
+        
+        &:first-child {
+            @extend .slideInLeft;
+            border-right: 4px $border solid;
+        }
+        
+        &:last-child {
+            @extend .slideInRight;
+            border-left: 4px $border solid;
+        }
+        
+        & > div {
+            &:first-child {
+                @extend .generic-bg;
+            }
+            
+            &:last-child {
+                display: flex;
+                height: calc(100% - 2rem);
+                
+                & > p {
+                    margin: 0.5rem 0.25rem !important;
+                    transform: scaleX(-1);
+                    position: relative;
+                    height: 100%;
+                    text-orientation: upright;
+                    writing-mode: vertical-rl;
+                    text-wrap: none;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    
+                    & > span {
+                        margin-bottom: 0.25rem;
+                        will-change: opacity;
+                        transition: opacity 500ms linear;
+                        height: 1rem;
+                        display: inline-block;
+                        animation: flash-in linear 250ms;
+                    }
+                }
+            }
+        }
+        
+    }
+}
+
+@keyframes flash-in {
+    from {
+        color: silver;
+    }
+    to {
+        color: $primary;
     }
 }
 
@@ -461,8 +531,8 @@ $animation-timing: 1s;
 
 @font-face {
     font-family: 'icomoon';
-    src:  url('fonts/icomoon.eot?uch75b');
-    src:  url('fonts/icomoon.eot?uch75b#iefix') format('embedded-opentype'),
+    src: url('fonts/icomoon.eot?uch75b');
+    src: url('fonts/icomoon.eot?uch75b#iefix') format('embedded-opentype'),
     url('fonts/icomoon.ttf?uch75b') format('truetype'),
     url('fonts/icomoon.woff?uch75b') format('woff'),
     url('fonts/icomoon.svg?uch75b#icomoon') format('svg');
@@ -489,34 +559,42 @@ $animation-timing: 1s;
 .icon-play:before {
     content: "\e908";
 }
+
 .icon-twitch:before {
     content: "\e900";
     color: $twitch;
 }
+
 .icon-reddit:before {
     content: "\e901";
     color: $reddit;
 }
+
 .icon-twitter:before {
     content: "\e902";
     color: $twitter;
 }
+
 .icon-youtube:before {
     content: "\e903";
     color: $youtube;
 }
+
 .icon-linkedin:before {
     content: "\e904";
     color: $linkedin;
 }
+
 .icon-github:before {
     content: "\e905";
     color: $github
 }
+
 .icon-snapchat:before {
     content: "\e906";
     color: $snapchat;
 }
+
 .icon-instagram:before {
     content: "\e907";
     color: $instagram;
