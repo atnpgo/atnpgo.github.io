@@ -1,0 +1,469 @@
+@charset "UTF-8";
+/*
+ * _____/\\\\\\\\\_____/\\\\\\\\\\\\\\\__/\\\\\_____/\\\__/\\\\\\\\\\\\\_______/\\\\\\\\\\\\_______/\\\\\______
+ *  ___/\\\\\\\\\\\\\__\///////\\\/////__\/\\\\\\___\/\\\_\/\\\/////////\\\___/\\\//////////______/\\\///\\\____
+ *   __/\\\/////////\\\_______\/\\\_______\/\\\/\\\__\/\\\_\/\\\_______\/\\\__/\\\_______________/\\\/__\///\\\__
+ *    _\/\\\_______\/\\\_______\/\\\_______\/\\\//\\\_\/\\\_\/\\\\\\\\\\\\\/__\/\\\____/\\\\\\\__/\\\______\//\\\_
+ *     _\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\\//\\\\/\\\_\/\\\/////////____\/\\\___\/////\\\_\/\\\_______\/\\\_
+ *      _\/\\\/////////\\\_______\/\\\_______\/\\\_\//\\\/\\\_\/\\\_____________\/\\\_______\/\\\_\//\\\______/\\\__
+ *       _\/\\\_______\/\\\_______\/\\\_______\/\\\__\//\\\\\\_\/\\\_____________\/\\\_______\/\\\__\///\\\__/\\\____
+ *        _\/\\\_______\/\\\_______\/\\\_______\/\\\___\//\\\\\_\/\\\_____________\//\\\\\\\\\\\\/_____\///\\\\\/_____
+ *         _\///________\///________\///________\///_____\/////__\///_______________\////////////_________\/////_______
+ */
+html, body {
+  overflow: hidden;
+  background-color: #360800;
+}
+
+button {
+  font-family: "exan-regular", "monospace";
+  display: flex !important;
+  flex-wrap: nowrap;
+  margin-bottom: 1rem;
+}
+button > i {
+  margin-right: 0.5rem;
+}
+
+p {
+  margin-bottom: 1rem !important;
+}
+
+footer {
+  position: absolute !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+}
+@media (max-width: 600px) {
+  footer {
+    padding: 0.5rem;
+  }
+}
+footer > div:first-child {
+  top: 0 !important;
+  border-bottom-width: 4px !important;
+}
+footer > div:last-child {
+  display: flex;
+  justify-content: space-between;
+}
+
+#root > div > div:last-child {
+  overflow: hidden !important;
+}
+
+article h1 {
+  font-size: 2rem !important;
+}
+article h1 a:not(.close) > span > span {
+  text-shadow: 0 0 16px rgba(172, 249, 251, 0.8);
+}
+article article header > h1 {
+  font-size: 1.5rem !important;
+}
+article header {
+  padding: 0.5rem 1rem !important;
+}
+article header > h1 {
+  display: flex !important;
+  justify-content: space-between;
+}
+
+.first-frame {
+  margin-top: 1rem !important;
+}
+@media (min-width: 700px) {
+  .first-frame {
+    margin-top: 2rem !important;
+  }
+}
+@media (min-width: 1200px) {
+  .first-frame {
+    margin-top: 8rem !important;
+  }
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  -webkit-backdrop-filter: blur(4px);
+  backdrop-filter: blur(4px);
+  background-color: #360800;
+  opacity: 0.6;
+}
+
+.modal-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  width: 90%;
+  max-height: 90%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+@media (max-width: 599px) {
+  .modal-content {
+    width: 100%;
+  }
+}
+@media (min-width: 900px) {
+  .modal-content {
+    max-width: 800px;
+  }
+}
+
+.auto-width {
+  max-width: 61.8034%;
+}
+@media (max-width: 599px) {
+  .auto-width {
+    max-width: 100%;
+  }
+}
+
+a {
+  color: #F52400 !important;
+}
+a.close {
+  font-family: "exan-regular", "monospace" !important;
+  padding: 0 0 0 1rem;
+  font-size: 1rem;
+  transition: color 350ms ease-in-out;
+  display: flex;
+  align-items: center;
+}
+a.close:hover {
+  color: #ff8a76 !important;
+}
+
+.button-container {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center !important;
+}
+@media (min-width: 1488px) {
+  .button-container {
+    justify-content: space-between !important;
+  }
+}
+
+@media (max-width: 485px) {
+  .auto-hide {
+    display: none !important;
+  }
+}
+
+.slideInTop {
+  will-change: transform;
+  animation-name: slide-in-top;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.slideInBottom {
+  will-change: transform;
+  animation-name: slide-in-bottom;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+}
+
+.slideInRight {
+  will-change: transform;
+  animation-name: slide-in-right;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+.slideInLeft {
+  will-change: transform;
+  animation-name: slide-in-left;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+@keyframes slide-in-top {
+  from {
+    transform: translateY(-150%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-in-bottom {
+  from {
+    transform: translateY(150%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+@keyframes slide-in-right {
+  from {
+    transform: translateX(150%);
+  }
+  50% {
+    transform: translateX(150%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes slide-in-left {
+  from {
+    transform: translateX(-150%);
+  }
+  50% {
+    transform: translateX(-150%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+.wings {
+  display: flex;
+  justify-content: space-between;
+}
+.wings > div {
+  border-bottom: 4px solid #761100;
+  height: 2rem;
+  width: 25vmin;
+  min-width: 140px;
+  will-change: transform;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  position: fixed;
+}
+.wings > div:first-child {
+  left: 0;
+  border-right: 4px solid #761100;
+  border-bottom-right-radius: 100% 500%;
+  animation-name: slide-in-left;
+}
+.wings > div:first-child > div {
+  border-bottom-right-radius: 100% 500%;
+}
+.wings > div:last-child {
+  right: 0;
+  border-left: 4px solid #761100;
+  border-bottom-left-radius: 100% 500%;
+  animation-name: slide-in-right;
+}
+.wings > div:last-child > div {
+  border-bottom-left-radius: 100% 500%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.wings > div:last-child > span {
+  right: 0;
+}
+.wings > div > div {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #360800;
+  opacity: 0.6;
+}
+.wings > div > span {
+  position: absolute;
+  color: #F52400;
+  z-index: 1;
+}
+
+.low-wing {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 4px solid #761100;
+  width: 30vmin;
+  height: 26vmin;
+  max-width: 720px;
+  max-height: 720px;
+  will-change: transform;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+@media (max-width: 735px) {
+  .low-wing {
+    display: none !important;
+  }
+}
+.low-wing.left {
+  border-right: 4px solid #761100;
+  border-top-right-radius: 100% 500%;
+  animation-name: slide-in-left;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.low-wing.left > div:first-child {
+  border-top-right-radius: 100% 500%;
+}
+.low-wing.left > figure {
+  margin-top: 0;
+  margin-right: 20%;
+  margin-bottom: 0;
+  margin-left: 5%;
+  width: calc(100% - 1rem) !important;
+  height: calc(100% - 3rem) !important;
+}
+.low-wing.right {
+  border-left: 4px solid #761100;
+  border-top-left-radius: 100% 500%;
+  animation-name: slide-in-right;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
+.low-wing.right > div:first-child {
+  border-top-left-radius: 100% 500%;
+}
+.low-wing.right > div:last-child {
+  padding: 4px;
+  margin-top: 0;
+  margin-right: 5%;
+  margin-bottom: 0;
+  margin-left: 15%;
+  width: calc(100% - 1rem) !important;
+  height: calc(100% - 1.9rem) !important;
+}
+.low-wing.right > div:last-child > div > div:last-child {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+.low-wing.right > div:last-child > div ul {
+  margin-left: 14px !important;
+  margin-bottom: 0 !important;
+  font-size: 0.6rem;
+}
+.low-wing.right > div:last-child > div ul li > span {
+  width: 100%;
+}
+.low-wing.right > div:last-child > div ul li > span > span {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.low-wing > div:first-child {
+  background-color: #360800;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+/**************************************
+ *  Font faces                        *
+ **************************************/
+@font-face {
+  font-family: "exan-regular";
+  src: url("fonts/Exan-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "ailerons-regular";
+  src: url("fonts/Ailerons-Regular.otf") format("opentype");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "icomoon";
+  src: url("fonts/icomoon.eot?v3dx47");
+  src: url("fonts/icomoon.eot?v3dx47#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?v3dx47") format("truetype"), url("fonts/icomoon.woff?v3dx47") format("woff"), url("fonts/icomoon.svg?v3dx47#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+[class^=icon-], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-earth:before {
+  content: "";
+}
+
+.icon-facebook:before {
+  content: "";
+  color: #3B5998;
+}
+
+.icon-github:before {
+  content: "";
+  color: #4078C0;
+}
+
+.icon-instagram:before {
+  content: "";
+  color: #E4405F;
+}
+
+.icon-linkedin:before {
+  content: "";
+  color: #0077B5;
+}
+
+.icon-reddit:before {
+  content: "";
+  color: #FF4500;
+}
+
+.icon-snapchat:before {
+  content: "";
+  color: #FFFC00;
+}
+
+.icon-stackoverflow:before {
+  content: "";
+  color: #FE7A16;
+}
+
+.icon-tumblr:before {
+  content: "";
+  color: #36465d;
+}
+
+.icon-twitch:before {
+  content: "";
+  color: #6441A4;
+}
+
+.icon-twitter:before {
+  content: "";
+  color: #1DA1F2;
+}
+
+.icon-youtube:before {
+  content: "";
+  color: #FF0000;
+}
+
+/*# sourceMappingURL=App.css.map */
