@@ -370,6 +370,7 @@ a.close:hover {
   right: 0;
   display: flex;
   justify-content: space-between;
+  overflow: hidden;
 }
 @media (max-width: 735px) {
   .sidebars {
@@ -404,10 +405,13 @@ a.close:hover {
 .sidebars > div > div:last-child > p > span {
   margin-bottom: 0.25rem;
   will-change: opacity;
-  transition: opacity 500ms linear;
+  transition: opacity 50ms linear;
   height: 1rem;
   display: inline-block;
-  animation: flash-in linear 250ms;
+  font-family: "exan-regular", "monospace";
+}
+.sidebars > div > div:last-child > p > span.flash {
+  animation: flash-in linear 25ms;
 }
 
 @keyframes flash-in {
