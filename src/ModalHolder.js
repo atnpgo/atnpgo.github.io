@@ -552,6 +552,11 @@ class ModalHolder extends React.Component {
                                                                                             Bacon-mozzarella grilled cheese sandwich made from the previous loaf of bread.
                                                                                         </Words></p>
                                                                                     </Image>
+                                                                                    <Image layer='primary' animate show={anim.entered} resources='/images/steak.jpg'>
+                                                                                        <p><Words animate show={anim.entered}>
+                                                                                            Steak sous-vide, finished in a cast iron pan.
+                                                                                        </Words></p>
+                                                                                    </Image>
                                                                                 </Fragment>
                                                                             )}
                                                                         </Project>
