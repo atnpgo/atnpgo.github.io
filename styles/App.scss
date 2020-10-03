@@ -446,6 +446,7 @@ $animation-timing: 1s;
     right: 0;
     display: flex;
     justify-content: space-between;
+    overflow: hidden;
     
     @media (max-width: 735px) {
         display: none !important;
@@ -488,10 +489,14 @@ $animation-timing: 1s;
                     & > span {
                         margin-bottom: 0.25rem;
                         will-change: opacity;
-                        transition: opacity 500ms linear;
+                        transition: opacity 50ms linear;
                         height: 1rem;
                         display: inline-block;
-                        animation: flash-in linear 250ms;
+                        font-family: $font-family-base;
+                        
+                        &.flash {
+                            animation: flash-in linear 25ms;
+                        }
                     }
                 }
             }
