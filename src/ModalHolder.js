@@ -47,7 +47,7 @@ class ModalHolder extends React.Component {
             this.modals.push(this.state.modal);
         }
         this.setState({
-            modal: <Modal title='SOCIALS' close={() => this.close()}>
+            modal: <Modal title='SOCIALS' small={true} close={() => this.close()}>
                 {anim => (
                     <div>
                         <Row style={{marginBottom: 0}}>
