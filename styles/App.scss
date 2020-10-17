@@ -145,7 +145,10 @@ article {
 }
 
 .modal-content {
-    //min-width: 400px;
+    max-height: 90%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    
     width: 90%;
     @media (max-width: 599px) {
         width: 100%;
@@ -153,10 +156,13 @@ article {
     @media (min-width: 900px) {
         max-width: 800px;
     }
-    //min-height: 400px;
-    max-height: 90%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    
+    &.modal-sm {
+        width: 100%;
+        @media (min-width: 400px) {
+            max-width: 400px;
+        }
+    }
 }
 
 .auto-width {

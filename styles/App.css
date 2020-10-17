@@ -111,10 +111,10 @@ article header > h1 {
 }
 
 .modal-content {
-  width: 90%;
   max-height: 90%;
   overflow-y: auto;
   overflow-x: hidden;
+  width: 90%;
 }
 @media (max-width: 599px) {
   .modal-content {
@@ -124,6 +124,14 @@ article header > h1 {
 @media (min-width: 900px) {
   .modal-content {
     max-width: 800px;
+  }
+}
+.modal-content.modal-sm {
+  width: 100%;
+}
+@media (min-width: 400px) {
+  .modal-content.modal-sm {
+    max-width: 400px;
   }
 }
 
