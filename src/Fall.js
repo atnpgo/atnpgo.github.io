@@ -1,69 +1,56 @@
 import React from 'react';
 
-const CHARACTERS = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ☭⚩⚦日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ'.split('');
 // const CHARACTERS = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦⚧."=*+<>¦｜⍶çｸ☭⚩⚧⚦日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚧⚦."=*+<>¦｜⍶çｸ'.split('');
+const CHARACTERS = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ☭⚩⚦日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ'.split('');
 
-class Fall extends React.Component {
+class Column extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            children1: {
-                list: [],
-                full: false,
-                index: 0
-            },
-            children2: {
-                list: [],
-                full: false,
-                index: 0
-            }
+            list: [],
+            full: false,
+            index: 0
         };
+
+        this.container = React.createRef();
     }
 
-
     componentDidMount() {
-
-        const process = children => children.list = children.list.map(child => Math.random() > 0.001 ? child : {
-            text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)],
-            class: 'flash'
-        });
-
-
         const tick = () => {
-            process(this.state.children1);
-            process(this.state.children2);
+            this.state.list.map(child => Math.random() > 0.001 ? child : {
+                text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)],
+                class: 'flash'
+            });
             window.requestAnimationFrame(() => {
                 this.setState(this.state);
                 tick();
             });
         };
-        tick();
 
-        const addChar = children => {
-            const height = this.container1.clientHeight + 160;
-            if (children.full) {
-                if (children.index * 20 > height) {
-                    children.index = 0;
-                    children.list.forEach(i => i.class = '');
+        const addChar = () => {
+            const height = this.container.current.clientHeight + 160;
+            if (this.state.full) {
+                if (this.state.index * 20 > height) {
+                    this.state.index = 0;
+                    this.state.list.forEach(i => i.class = '');
                 }
-            } else if (children.list.length * 20 > height) {
-                children.full = true;
-                children.list.forEach(i => i.class = '');
+            } else if (this.state.list.length * 20 > height) {
+                this.state.full = true;
+                this.state.list.forEach(i => i.class = '');
             }
 
-            if (children.full) {
-                children.list[children.index++] = {text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'};
+            if (this.state.full) {
+                this.state.list[this.state.index++] = {text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'};
             } else {
-                children.list.push({text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'});
+                this.state.list.push({text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'});
             }
 
             window.requestAnimationFrame(() => {
                 this.setState(this.state);
-                setTimeout(() => addChar(children), Math.floor(Math.random() * 25));
+                setTimeout(() => addChar(), Math.floor(Math.random() * 25));
             });
         };
-        addChar(this.state.children1);
-        addChar(this.state.children2);
+        setTimeout(addChar, 1250);
 
     }
 
@@ -75,15 +62,12 @@ class Fall extends React.Component {
     }
 
     render() {
-        return <div>
-            <p ref={container => this.container1 = container}>
-                {this.state.children1.list.map((child, idx) => <span className={child.class} key={idx}>{child.text}</span>)}
-            </p>
-            <p>
-                {this.state.children2.list.map((child, idx) => <span className={child.class} key={idx}>{child.text}</span>)}
-            </p>
-        </div>;
+        return <p ref={this.container}>
+            {this.state.list.map((child, idx) => <span className={child.class} key={idx}>{child.text}</span>)}
+        </p>;
     }
 }
 
-export default Fall;
+export default function Fall() {
+    return <div><Column/><Column/></div>;
+};
