@@ -82,9 +82,6 @@ class AppWrapper extends React.Component {
         viz.zoomToFit(jupiter, 1);
         viz.start();
 
-        setInterval(() => console.log(viz.getViewer().get3jsCameraControls()), 1000);
-
-
         // Add its moons
         const moonObjs = [];
         let jupiterSatellites = [];
