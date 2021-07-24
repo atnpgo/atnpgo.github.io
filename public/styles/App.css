@@ -434,6 +434,16 @@ figcaption {
   color: #F52400 !important;
 }
 
+.spacePort > div:last-child {
+  margin: -3px;
+  height: calc(100% + 6px);
+  width: calc(100% + 6px);
+}
+
+li::before {
+  top: -0.325rem;
+}
+
 /**************************************
  *  Font faces                        *
  **************************************/

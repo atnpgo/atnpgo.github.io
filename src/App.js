@@ -22,7 +22,6 @@ import THEME from './theme';
 import HoverButton from './HoverButton';
 import Modal from './Modal';
 import ModalHolder from './ModalHolder';
-import Video from './arwes/packages/arwes/src/Video';
 import moment from 'moment';
 import NotificationList from './NotificationList';
 import Fall from './Fall';
@@ -43,6 +42,70 @@ class AppWrapper extends React.Component {
         return new Howl(Object.assign(settings, {
             src: [src]
         }));
+    }
+
+    bindSpacePort() {
+        const viz = new window.Spacekit.Simulation(document.getElementById('space-port'), {
+            jdPerSecond: 0.1,
+            particleTextureUrl: 'images/fuzzyparticle.png',
+            unitsPerAu: 100.0,
+            camera: {
+                initialPosition: [
+                    0.0014980565625981512,
+                    -0.030445338891231168,
+                    0.03616394298897485,
+                ],
+            },
+        });
+
+        // Create a light source somewhere off in the distance.
+        viz.createLight([1, 1, 1]);
+
+        // Create a starry background using Yale Bright Star Catalog Data.
+        viz.createStars();
+
+        // Create jupiter
+        const jupiter = viz.createSphere('jupiter', {
+            textureUrl: 'images/jupiter2_4k.jpg',
+            radius: 71492 / 149598000, // radius in AU, so jupiter is shown to scale
+            levelsOfDetail: [
+                {radii: 0, segments: 64},
+                {radii: 30, segments: 16},
+                {radii: 60, segments: 8},
+            ],
+            atmosphere: {
+                enable: true,
+            }
+        });
+        viz.setCameraDrift(true);
+        viz.setDate(new Date());
+        viz.zoomToFit(jupiter, 1);
+        viz.start();
+
+        setInterval(() => console.log(viz.getViewer().get3jsCameraControls()), 1000);
+
+
+        // Add its moons
+        const moonObjs = [];
+        let jupiterSatellites = [];
+        viz.loadNaturalSatellites().then(loader => {
+            jupiterSatellites = loader.getSatellitesForPlanet('jupiter');
+            jupiterSatellites.forEach(moon => {
+                const obj = viz.createObject(moon.name, {
+                    labelText: moon.name,
+                    ephem: moon.ephem,
+                    particleSize: 50,
+                });
+                moonObjs.push(obj);
+            });
+            moonObjs.forEach(moonObj => {
+                moonObj.getOrbit().setVisibility(false);
+                moonObj.setLabelVisibility(false);
+            });
+        });
+
+
+        window.THREE = window.Spacekit.THREE;
     }
 
     componentDidUpdate(prevProps) {
@@ -139,6 +202,8 @@ class AppWrapper extends React.Component {
             };
             setDate();
 
+            this.bindSpacePort();
+
         }
     }
 
@@ -164,7 +229,7 @@ class AppWrapper extends React.Component {
                                 <Modal title={'WELCOME'} theme={theme}>
                                     {anim => (
                                         <div style={{display: 'flex', justifyContent: 'center'}}>
-                                            <HoverButton animate layer='primary' show={anim.entered} onClick={() => this.setState({launched: true})}>
+                                            <HoverButton animate layer="primary" show={anim.entered} onClick={() => this.setState({launched: true})}>
                                                 {anim => <Fragment><i className={'icon-play'} style={{marginRight: '0.5rem'}}/>
                                                     <Words animate show={anim.entered}>Launch</Words></Fragment>}
                                             </HoverButton>
@@ -185,6 +250,7 @@ class AppWrapper extends React.Component {
         );
     }
 }
+
 
 class App extends React.Component {
     constructor(props) {
@@ -219,12 +285,12 @@ class App extends React.Component {
 
     render() {
         return <AppWrapper>
-            <Arwes animate={true} show={true} background='/images/PIA13112_hires.jpg' pattern='/images/glow.png'>
+            <Arwes animate={true} show={true} background="/images/PIA13112_hires.jpg" pattern="/images/glow.png">
                 {anim => (
 
                     <Fragment>
                         <Header animate className={'slideInTop'}>
-                            <Heading node='h1' style={{margin: 0}}>ATNPGO</Heading>
+                            <Heading node="h1" style={{margin: 0}}>ATNPGO</Heading>
                         </Header>
                         <div className={'sidebars'}>
                             <div>
@@ -256,7 +322,7 @@ class App extends React.Component {
                         }}>
                             <Puffs animate>
                                 <Fragment>
-                                    <Frame show={anim.entered} animate level={3} corners={4} layer='primary' style={{margin: '4px auto 0'}} className={'first-frame'}>
+                                    <Frame show={anim.entered} animate level={3} corners={4} layer="primary" style={{margin: '4px auto 0'}} className={'first-frame'}>
                                         {anim => (
                                             <p style={{margin: '1rem'}}><Words animate show={anim.entered}>
                                                 Welcome to the personal website of Etienne Pageau. Full-stack software developer, design dabbler, film snob, avid reader, cardboard
@@ -265,18 +331,18 @@ class App extends React.Component {
                                         )}
                                     </Frame>
 
-                                    <Project show={anim.entered} animate header='SELECT A SECTION' style={{margin: '2rem auto'}} className={'auto-width'}>
+                                    <Project show={anim.entered} animate header="SELECT A SECTION" style={{margin: '2rem auto'}} className={'auto-width'}>
                                         {anim => (
                                             <div className={'button-container'}>
-                                                <HoverButton animate layer='success' show={anim.entered} onClick={() => this._modals.current.openSocials()}
+                                                <HoverButton animate layer="success" show={anim.entered} onClick={() => this._modals.current.openSocials()}
                                                              style={{margin: '0 0.5rem 0.5rem 0'}}>
                                                     <Words animate show={anim.entered}>Social Media</Words>
                                                 </HoverButton>
-                                                <HoverButton animate layer='secondary' show={anim.entered} onClick={() => this._modals.current.openHobbies()}
+                                                <HoverButton animate layer="secondary" show={anim.entered} onClick={() => this._modals.current.openHobbies()}
                                                              style={{margin: '0 0.5rem 0.5rem 0'}}>
                                                     <Words animate show={anim.entered}>Projects</Words>
                                                 </HoverButton>
-                                                <HoverButton animate layer='control' show={anim.entered} onClick={() => this._modals.current.openCV()}
+                                                <HoverButton animate layer="control" show={anim.entered} onClick={() => this._modals.current.openCV()}
                                                              style={{margin: '0 0.5rem 0.5rem 0'}}>
                                                     <Words animate show={anim.entered}>Resume</Words>
                                                 </HoverButton>
@@ -290,11 +356,11 @@ class App extends React.Component {
                         </div>
                         <Footer className={'slideInBottom'}>
                             <span></span>
-                            <span style={{fontSize: '0.6rem'}}>oc © 2020 Etienne Pageau</span>
+                            <span style={{fontSize: '0.6rem'}}>oc © {moment().utc().format('YYYY')} Etienne Pageau</span>
                         </Footer>
 
 
-                        <Frame show={anim.entered} className={'auto-hide slideInTop'} animate level={3} corners={4} layer='primary'
+                        <Frame show={anim.entered} className={'auto-hide slideInTop'} animate level={3} corners={4} layer="primary"
                                style={{position: 'fixed', top: '1.5rem', right: '2rem'}}>
                             <div id="siri-container"/>
                         </Frame>
@@ -305,18 +371,25 @@ class App extends React.Component {
                         </div>
                         <div className={'low-wing left'} style={{position: 'fixed', bottom: '2.9rem', left: 0}}>
                             <div/>
-                            <Video layer='primary'
-                                   vidProps={{
-                                       muted: 'muted',
-                                       autoPlay: 'autoplay',
-                                       loop: 'loop',
-                                       playsInline: true
-                                   }}
-                                   style={{height: '100%', width: '100%'}}
-                                   animate show={anim.entered} className={''}>
-                                <source src='/images/planet.webm' type='video/webm'/>
-                                <source src="/images/planet.mp4" type="video/mp4"/>
-                            </Video>
+
+                            <Frame show={anim.entered} className={'auto-hide slideInTop spacePort'} animate level={3} corners={4} layer="primary"
+                                   style={{
+                                       padding: '4px',
+                                       marginTop: 0,
+                                       marginLeft: '5%',
+                                       marginBottom: 0,
+                                       marginRight: '15%',
+                                       width: 'calc(100% - 1rem)',
+                                       height: 'calc(100% - 1.9rem)'
+                                   }}>
+                                <div id="space-port" style={{
+                                    position: 'absolute',
+                                    top: 0,
+                                    left: 0,
+                                    width: '100%',
+                                    height: '100%'
+                                }}/>
+                            </Frame>
                         </div>
 
                     </Fragment>

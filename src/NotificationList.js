@@ -71,7 +71,7 @@ class NotificationList extends React.Component {
     render() {
         return <Frame show animate level={3} corners={4} layer='primary' style={this.props.style}>
             <List node='ul'>
-                {this.state.messages.map((message, idx) => <li key={idx}><Words animate show mute={true}>{message}</Words></li>)}
+                {this.state.messages.map((message, idx) => <li key={idx}><Words animate show mute={'true'}>{message}</Words></li>)}
             </List>
         </Frame>;
     }
