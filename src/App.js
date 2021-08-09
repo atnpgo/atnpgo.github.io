@@ -3,7 +3,6 @@ import React, {Fragment} from 'react';
 import ThemeProvider from './arwes/packages/arwes/src/ThemeProvider';
 import createTheme from './arwes/packages/arwes/src/tools/createTheme';
 import Arwes from './arwes/packages/arwes/src/Arwes';
-import Puffs from './arwes/packages/arwes/src/Puffs';
 import Header from './arwes/packages/arwes/src/Header';
 import Heading from './arwes/packages/arwes/src/Heading';
 import Frame from './arwes/packages/arwes/src/Frame';
@@ -12,7 +11,7 @@ import Loading from './arwes/packages/arwes/src/Loading';
 import createLoader from './arwes/packages/arwes/src/tools/createLoader';
 import Footer from './arwes/packages/arwes/src/Footer';
 import Project from './arwes/packages/arwes/src/Project';
-import {SoundsProvider} from './arwes/packages/sounds/src/SoundsProvider';
+import {SoundsProvider} from './arwes/packages/sounds/src';
 
 import {Howl} from 'howler';
 import SiriWave from 'siriwave';
@@ -24,7 +23,6 @@ import Modal from './Modal';
 import ModalHolder from './ModalHolder';
 import moment from 'moment';
 import NotificationList from './NotificationList';
-import Fall from './Fall';
 
 
 class AppWrapper extends React.Component {
@@ -45,72 +43,105 @@ class AppWrapper extends React.Component {
     }
 
     bindSpacePort() {
-        const viz = new window.Spacekit.Simulation(document.getElementById('space-port'), {
-            jdPerSecond: 0.1,
-            particleTextureUrl: 'images/fuzzyparticle.png',
-            unitsPerAu: 100.0,
-            camera: {
-                initialPosition: [
-                    0.0014980565625981512,
-                    -0.030445338891231168,
-                    0.03616394298897485,
+        return new Promise(resolve => {
+            const viz = new window.Spacekit.Simulation(document.getElementById('space-port'), {
+                camera: {
+                    initialPosition: [
+                        0.25,
+                        -0.5,
+                        0.25,
+                    ],
+                },
+            });
+            viz.createStars();
+            viz.createAmbientLight();
+            viz.createLight([1, 1, 1]);
+
+            const obj = viz.createShape('ship', {
+                shape: {
+                    enableRotation: true,
+                    shapeUrl: 'ship.obj',
+                    textureUrl: 'images/texture.jpg'
+                },
+                rotation: {
+                    enable: true,
+                    speed: -0.125,
+                }
+            });
+
+            viz.zoomToFit(obj, 0.375);
+            obj.startRotation();
+            // viz.setCameraDrift(true);
+            viz.start();
+            resolve();
+        });
+    }
+
+    bindBackground() {
+        return new Promise(resolve => {
+            const viz = new window.Spacekit.Simulation(document.querySelector('.background-holder > div:first-child'), {
+                jdPerSecond: 0.1,
+                particleTextureUrl: 'images/fuzzyparticle.png',
+                unitsPerAu: 100.0,
+                maxNumParticles: 2 ** 16,
+                camera: {
+                    initialPosition: [
+                        -(0.25 + (50 * Math.random() / 100)),
+                        -(0.25 + (50 * Math.random() / 100)),
+                        (0.25 + (50 * Math.random() / 100)),
+                    ],
+                },
+            });
+
+            viz.createAmbientLight();
+            viz.createLight([-1, 1, 1]);
+            viz.createSkybox({textureUrl: 'images/stars.jpg'});
+            viz.createStars();
+
+            const jupiter = viz.createSphere('jupiter', {
+                textureUrl: 'images/venus.jpg',
+                radius: 71492 / 149598000, // radius in AU, so jupiter is shown to scale
+                levelsOfDetail: [
+                    {radii: 0, segments: 64},
+                    {radii: 30, segments: 16},
+                    {radii: 60, segments: 8},
                 ],
-            },
-        });
+                atmosphere: {
+                    enable: true,
+                    color: 0xb1cdb2
+                },
+                rotation: {
+                    enable: true,
+                    speed: 0.25,
+                }
+            });
+            viz.setCameraDrift(true);
+            viz.zoomToFit(jupiter, 0.75);
+            viz.start();
 
-        // Create a light source somewhere off in the distance.
-        viz.createLight([1, 1, 1]);
-
-        // Create a starry background using Yale Bright Star Catalog Data.
-        viz.createStars();
-
-        // Create jupiter
-        const jupiter = viz.createSphere('jupiter', {
-            textureUrl: 'images/jupiter2_4k.jpg',
-            radius: 71492 / 149598000, // radius in AU, so jupiter is shown to scale
-            levelsOfDetail: [
-                {radii: 0, segments: 64},
-                {radii: 30, segments: 16},
-                {radii: 60, segments: 8},
-            ],
-            atmosphere: {
-                enable: true,
-            }
-        });
-        viz.setCameraDrift(true);
-        viz.setDate(new Date());
-        viz.zoomToFit(jupiter, 1);
-        viz.start();
-
-        // Add its moons
-        const moonObjs = [];
-        let jupiterSatellites = [];
-        viz.loadNaturalSatellites().then(loader => {
-            jupiterSatellites = loader.getSatellitesForPlanet('jupiter');
-            jupiterSatellites.forEach(moon => {
+            // Add its moons
+            viz.loadNaturalSatellites().then(loader => loader.getSatellitesForPlanet('jupiter').forEach(moon => {
                 const obj = viz.createObject(moon.name, {
                     labelText: moon.name,
                     ephem: moon.ephem,
                     particleSize: 50,
                 });
-                moonObjs.push(obj);
-            });
-            moonObjs.forEach(moonObj => {
-                moonObj.getOrbit().setVisibility(false);
-                moonObj.setLabelVisibility(false);
-            });
+                obj.getOrbit().setVisibility(false);
+                obj.setLabelVisibility(false);
+            }));
+            resolve();
         });
-
-
-        window.THREE = window.Spacekit.THREE;
     }
 
     componentDidUpdate(prevProps) {
         if (this.state.loading) {
             createLoader().load({
                 images: [
-                    '/images/PIA13112_hires.jpg',
+                    '/images/texture.jpg',
+                    '/images/fuzzyparticle.png',
                     '/images/glow.png',
+                    '/images/stars.jpg',
+                    '/images/venus.jpg',
                 ], sounds: [
                     '/sounds/click.mp3',
                     '/sounds/error.mp3',
@@ -193,14 +224,23 @@ class AppWrapper extends React.Component {
             setTime();
 
             const dateSpan = document.querySelector('#date');
-            const setDate = () => {
-                dateSpan.textContent = moment.utc().format('YYYY.MM.DD');
-                setTimeout(() => window.requestAnimationFrame(setDate), 1000);
+
+            let last = 0;
+            const setDate = (timestamp) => {
+                if ((timestamp - last) >= 1000) {
+                    dateSpan.textContent = moment.utc().format('YYYY.MM.DD');
+                    last = timestamp;
+                }
+                window.requestAnimationFrame(setDate);
             };
             setDate();
 
-            this.bindSpacePort();
-
+            window.THREE = window.Spacekit.THREE;
+            Promise.all([
+                this.bindBackground(),
+                this.bindSpacePort()
+            ]);
+            document.querySelector('.ring').classList.add('focus');
         }
     }
 
@@ -282,23 +322,13 @@ class App extends React.Component {
 
     render() {
         return <AppWrapper>
-            <Arwes animate={true} show={true} background="/images/PIA13112_hires.jpg" pattern="/images/glow.png">
+            <Arwes animate={true} show={true} pattern="/images/glow.png" className={'background-holder'}>
                 {anim => (
-
                     <Fragment>
                         <Header animate className={'slideInTop'}>
                             <Heading node="h1" style={{margin: 0}}>ATNPGO</Heading>
                         </Header>
-                        <div className={'sidebars'}>
-                            <div>
-                                <div/>
-                                <Fall/>
-                            </div>
-                            <div>
-                                <div/>
-                                <Fall/>
-                            </div>
-                        </div>
+                        <div className={'ring'}/>
                         <div className={'wings'}>
                             <div>
                                 <span id={'date'} style={{marginLeft: '0.5rem'}}/>
@@ -317,39 +347,37 @@ class App extends React.Component {
                             maxHeight: 'calc(100% - 220px)',
                             overflowX: 'hidden'
                         }}>
-                            <Puffs animate>
-                                <Fragment>
-                                    <Frame show={anim.entered} animate level={3} corners={4} layer="primary" style={{margin: '4px auto 0'}} className={'first-frame'}>
-                                        {anim => (
-                                            <p style={{margin: '1rem'}}><Words animate show={anim.entered}>
-                                                Welcome to the personal website of Etienne Pageau. Full-stack software developer, design dabbler, film snob, avid reader, cardboard
-                                                collector, picky foodie, cat owner, casual gamer, stoner smark, clout chaser, sci-fi nerd, and fantasy dork.
-                                            </Words></p>
-                                        )}
-                                    </Frame>
+                            <Fragment>
+                                <Frame show={anim.entered} animate level={3} corners={4} layer="primary" style={{margin: '4px auto 0'}} className={'first-frame'}>
+                                    {anim => (
+                                        <p style={{margin: '1rem'}}><Words animate show={anim.entered}>
+                                            Welcome to the personal website of Etienne Pageau. Full-stack software developer, design dabbler, film snob, avid reader, cardboard
+                                            collector, picky foodie, cat owner, casual gamer, stoner smark, clout chaser, sci-fi nerd, and fantasy dork.
+                                        </Words></p>
+                                    )}
+                                </Frame>
 
-                                    <Project show={anim.entered} animate header="SELECT A SECTION" style={{margin: '2rem auto'}} className={'auto-width'}>
-                                        {anim => (
-                                            <div className={'button-container'}>
-                                                <HoverButton animate layer="success" show={anim.entered} onClick={() => this._modals.current.openSocials()}
-                                                             style={{margin: '0 0.5rem 0.5rem 0'}}>
-                                                    <Words animate show={anim.entered}>Social Media</Words>
-                                                </HoverButton>
-                                                <HoverButton animate layer="secondary" show={anim.entered} onClick={() => this._modals.current.openHobbies()}
-                                                             style={{margin: '0 0.5rem 0.5rem 0'}}>
-                                                    <Words animate show={anim.entered}>Projects</Words>
-                                                </HoverButton>
-                                                <HoverButton animate layer="control" show={anim.entered} onClick={() => this._modals.current.openCV()}
-                                                             style={{margin: '0 0.5rem 0.5rem 0'}}>
-                                                    <Words animate show={anim.entered}>Resume</Words>
-                                                </HoverButton>
-                                            </div>
-                                        )}
-                                    </Project>
+                                <Project show={anim.entered} animate header="SELECT A SECTION" style={{margin: '2rem auto'}} className={'auto-width'}>
+                                    {anim => (
+                                        <div className={'button-container'}>
+                                            <HoverButton animate layer="success" show={anim.entered} onClick={() => this._modals.current.openSocials()}
+                                                         style={{margin: '0 0.5rem 0.5rem 0'}}>
+                                                <Words animate show={anim.entered}>Social Media</Words>
+                                            </HoverButton>
+                                            <HoverButton animate layer="secondary" show={anim.entered} onClick={() => this._modals.current.openHobbies()}
+                                                         style={{margin: '0 0.5rem 0.5rem 0'}}>
+                                                <Words animate show={anim.entered}>Projects</Words>
+                                            </HoverButton>
+                                            <HoverButton animate layer="control" show={anim.entered} onClick={() => this._modals.current.openCV()}
+                                                         style={{margin: '0 0.5rem 0.5rem 0'}}>
+                                                <Words animate show={anim.entered}>Resume</Words>
+                                            </HoverButton>
+                                        </div>
+                                    )}
+                                </Project>
 
-                                </Fragment>
-                                <ModalHolder ref={this._modals}/>
-                            </Puffs>
+                            </Fragment>
+                            <ModalHolder ref={this._modals}/>
                         </div>
                         <Footer className={'slideInBottom'}>
                             <span></span>

@@ -1,6 +1,5 @@
 import React from 'react';
 
-// const CHARACTERS = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦⚧."=*+<>¦｜⍶çｸ☭⚩⚧⚦日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚧⚦."=*+<>¦｜⍶çｸ'.split('');
 const CHARACTERS = '日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ☭⚩⚦日ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ012345789Z:⏀⏂⍎☭⚩⚦."=*+<>¦｜⍶çｸ'.split('');
 
 class Column extends React.Component {
@@ -16,41 +15,35 @@ class Column extends React.Component {
     }
 
     componentDidMount() {
-        const tick = () => {
-            this.state.list.map(child => Math.random() > 0.001 ? child : {
-                text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)],
-                class: 'flash'
-            });
-            window.requestAnimationFrame(() => {
-                this.setState(this.state);
-                tick();
-            });
-        };
+        let delta = Math.floor(Math.random() * 25);
+        let last = 0;
+        const addChar = (timestamp) => {
+            if ((timestamp - last) >= delta) {
+                const newState = Object.assign({}, this.state);
 
-        const addChar = () => {
-            const height = this.container.current.clientHeight + 160;
-            if (this.state.full) {
-                if (this.state.index * 20 > height) {
-                    this.state.index = 0;
-                    this.state.list.forEach(i => i.class = '');
+                const height = this.container.current.clientHeight + 160;
+                if (newState.full) {
+                    if (newState.index * 20 > height) {
+                        newState.index = 0;
+                        newState.list.forEach(i => i.class = '');
+                    }
+                } else if (newState.list.length * 20 > height) {
+                    newState.full = true;
+                    newState.list.forEach(i => i.class = '');
                 }
-            } else if (this.state.list.length * 20 > height) {
-                this.state.full = true;
-                this.state.list.forEach(i => i.class = '');
-            }
 
-            if (this.state.full) {
-                this.state.list[this.state.index++] = {text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'};
-            } else {
-                this.state.list.push({text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'});
+                if (newState.full) {
+                    newState.list[newState.index++] = {text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'};
+                } else {
+                    newState.list.push({text: CHARACTERS[Math.floor(Math.random() * CHARACTERS.length)], class: 'flash'});
+                }
+                this.setState(newState);
+                last = timestamp;
+                delta = Math.floor(Math.random() * 25);
             }
-
-            window.requestAnimationFrame(() => {
-                this.setState(this.state);
-                setTimeout(() => addChar(), Math.floor(Math.random() * 25));
-            });
+            window.requestAnimationFrame(addChar);
         };
-        setTimeout(addChar, 1250);
+        window.requestAnimationFrame(addChar);
 
     }
 

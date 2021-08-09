@@ -45,7 +45,7 @@ const THEME = {
     },
     alpha: 0.45,
     shadowLength: 12,
-    animTime: 500,
+    animTime: 100,
     typography: {
         headerSizes: {
             h1: 64,

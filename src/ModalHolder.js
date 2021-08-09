@@ -3,6 +3,7 @@ import Project from './arwes/packages/arwes/src/Project';
 import Animation from './arwes/packages/arwes/src/Animation';
 import Modal from './Modal';
 import {Row} from 'arwes/lib/Grid';
+// noinspection ES6PreferShortImport
 import {Col} from './arwes/packages/arwes/src/Grid';
 import HoverButton from './HoverButton';
 import Words from './arwes/packages/arwes/src/Words';
@@ -11,6 +12,8 @@ import Appear from './arwes/packages/arwes/src/Appear';
 import Image from './arwes/packages/arwes/src/Image';
 import Video from './arwes/packages/arwes/src/Video';
 import Heading from './arwes/packages/arwes/src/Heading';
+import * as basicLightbox from 'basiclightbox'
+import 'basiclightbox/dist/basicLightbox.min.css'
 
 const ANIMATION_TIME = 350;
 
@@ -33,10 +36,22 @@ class ModalHolder extends React.Component {
     }
 
     componentDidMount() {
-
     }
 
     componentDidUpdate(prevProps) {
+        const items = document.querySelectorAll('.grid-image video, .grid-image img');
+        if (items.length) {
+            console.log(items);
+            items.forEach(item => {
+                item.addEventListener('click', e => {
+                    if (!e.currentTarget.src) {
+                        basicLightbox.create(`<video autoplay loop playsinline="true" controls><source type="video/mp4" src="${e.currentTarget.children[0].src.replace(/\.sm/g, '')}" /></video>`).show();
+                    } else {
+                        basicLightbox.create(`<img src="${e.currentTarget.src}" alt="${e.currentTarget.alt}" />`).show();
+                    }
+                });
+            });
+        }
     }
 
     componentWillUnmount() {
@@ -47,12 +62,12 @@ class ModalHolder extends React.Component {
             this.modals.push(this.state.modal);
         }
         this.setState({
-            modal: <Modal title='SOCIALS' small={true} close={() => this.close()}>
+            modal: <Modal title="SOCIALS" small={true} close={() => this.close()}>
                 {anim => (
                     <div>
                         <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='instagram' show={anim.entered} onClick={() => open('https://www.instagram.com/atnpgo')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="instagram" show={anim.entered} onClick={() => open('https://www.instagram.com/atnpgo')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-instagram'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -62,7 +77,7 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='snapchat' show={anim.entered} onClick={() => open('https://snapchat.com/add/atnpgo')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="snapchat" show={anim.entered} onClick={() => open('https://snapchat.com/add/atnpgo')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-snapchat'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -74,7 +89,7 @@ class ModalHolder extends React.Component {
                         </Row>
                         <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='github' show={anim.entered} onClick={() => open('https://github.com/atnpgo')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="github" show={anim.entered} onClick={() => open('https://github.com/atnpgo')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-github'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -84,7 +99,7 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='linkedin' show={anim.entered}
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="linkedin" show={anim.entered}
                                              onClick={() => open('https://www.linkedin.com/in/etiennepageau/')}>
                                     {anim => (
                                         <Fragment>
@@ -97,7 +112,7 @@ class ModalHolder extends React.Component {
                         </Row>
                         <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='youtube' show={anim.entered} onClick={() => open('https://youtube.atnpgo.wtf/')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="youtube" show={anim.entered} onClick={() => open('https://youtube.atnpgo.wtf/')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-youtube'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -107,7 +122,7 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='twitter' show={anim.entered} onClick={() => open('https://twitter.atnpgo.wtf/')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="twitter" show={anim.entered} onClick={() => open('https://twitter.atnpgo.wtf/')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-twitter'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -119,7 +134,7 @@ class ModalHolder extends React.Component {
                         </Row>
                         <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='reddit' show={anim.entered} onClick={() => open('https://www.reddit.com/user/ATNPGO')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="reddit" show={anim.entered} onClick={() => open('https://www.reddit.com/user/ATNPGO')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-reddit'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -129,7 +144,7 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer='twitch' show={anim.entered} onClick={() => open('https://www.twitch.tv/ATNPGO')}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="twitch" show={anim.entered} onClick={() => open('https://www.twitch.tv/ATNPGO')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-twitch'} style={{marginRight: '0.5rem'}}/></Appear>
@@ -156,11 +171,11 @@ class ModalHolder extends React.Component {
                         <Words animate show={anim.entered}>DOWNLOAD</Words></Link></div>} close={() => this.close()}>
                         {anim => (
                             <div>
-                                <Heading node='h3' style={{margin: '0 0 1rem'}}><Words animate={true} show={anim.entered}>EMPLOYMENT</Words></Heading>
+                                <Heading node="h3" style={{margin: '0 0 1rem'}}><Words animate={true} show={anim.entered}>EMPLOYMENT</Words></Heading>
                                 <Animation animate show={anim.entered} timeout={ANIMATION_TIME}>
                                     {anim => (
                                         <Fragment>
-                                            <Project show={anim.entered} animate header='OPROMA INC.' header2='APR.12-NOW' style={{margin: '0 auto 2rem'}}>
+                                            <Project show={anim.entered} animate header="OPROMA INC." header2="APR.12-NOW" style={{margin: '0 auto 2rem'}}>
                                                 {anim => (
                                                     <Fragment>
                                                         <p><Words animate show={anim.entered}>
@@ -278,7 +293,7 @@ class ModalHolder extends React.Component {
                                             <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                                 {anim => (
                                                     <Fragment>
-                                                        <Project show={anim.entered} animate header='STATISTICS CANADA' header2='MAY.11–FEB.12'
+                                                        <Project show={anim.entered} animate header="STATISTICS CANADA" header2="MAY.11–FEB.12"
                                                                  style={{margin: '2rem auto'}}>
                                                             {anim => (
                                                                 <p><Words animate show={anim.entered}>
@@ -293,7 +308,7 @@ class ModalHolder extends React.Component {
                                                         <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                                             {anim => (
                                                                 <Fragment>
-                                                                    <Project show={anim.entered} animate header='COLLÈGE LA CITÉ' header2='FEB.11–APR.11'
+                                                                    <Project show={anim.entered} animate header="COLLÈGE LA CITÉ" header2="FEB.11–APR.11"
                                                                              style={{margin: '0 auto 2rem'}}>
                                                                         {anim => (
                                                                             <p><Words animate show={anim.entered}>
@@ -307,7 +322,7 @@ class ModalHolder extends React.Component {
                                                                     </Project>
                                                                     <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                                                         {anim => (
-                                                                            <Project show={anim.entered} animate header='STATISTICS CANADA' header2='MAY.10–AUG.10'
+                                                                            <Project show={anim.entered} animate header="STATISTICS CANADA" header2="MAY.10–AUG.10"
                                                                                      style={{margin: '0 auto'}}>
                                                                                 {anim => (
                                                                                     <p><Words animate show={anim.entered}>
@@ -334,12 +349,12 @@ class ModalHolder extends React.Component {
                                     )}
                                 </Animation>
 
-                                <Heading node='h3' style={{margin: '2rem 0 1rem'}}><Words animate={true} show={anim.entered}>EDUCATION</Words></Heading>
+                                <Heading node="h3" style={{margin: '2rem 0 1rem'}}><Words animate={true} show={anim.entered}>EDUCATION</Words></Heading>
 
                                 <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                     {anim => (
                                         <Fragment>
-                                            <Project show={anim.entered} animate header='COLLÈGE LA CITÉ' header2='SEP.09-APR.12' style={{margin: '0 auto'}}>
+                                            <Project show={anim.entered} animate header="COLLÈGE LA CITÉ" header2="SEP.09-APR.12" style={{margin: '0 auto'}}>
                                                 {anim => (
                                                     <p><Words animate show={anim.entered}>
                                                         Program aiming to provide an overview of many software and technology fields and the skills required to maintain one's skill
@@ -359,11 +374,11 @@ class ModalHolder extends React.Component {
                                                 )}
                                             </Project>
 
-                                            <Heading node='h3' style={{margin: '2rem 0 1rem'}}><Words animate={true} show={anim.entered}>ANNEX</Words></Heading>
+                                            <Heading node="h3" style={{margin: '2rem 0 1rem'}}><Words animate={true} show={anim.entered}>ANNEX</Words></Heading>
 
                                             <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                                 {anim => (
-                                                    <Project show={anim.entered} animate header='HOW TO WRITE SOFTWARE TO OUTLIVE ITS CREATOR' header2='2018.08.07'
+                                                    <Project show={anim.entered} animate header="HOW TO WRITE SOFTWARE TO OUTLIVE ITS CREATOR" header2="2018.08.07"
                                                              style={{margin: '0 auto'}}>
                                                         {anim => (
                                                             <Fragment>
@@ -490,18 +505,74 @@ class ModalHolder extends React.Component {
         });
     }
 
+    getNext(anim) {
+        const urls = [
+            'images/pizza.jpeg',
+            'images/pizza.sm.mp4',
+            'images/burger.jpeg',
+            'images/burger.sm.mp4',
+            'images/IMG_4013.jpeg',
+            'images/breakfast.jpeg',
+            'images/breakfast.sm.mp4',
+            'images/steak.jpeg',
+            'images/nature.sm.mp4',
+            'images/hangman-bubbly.jpeg',
+            'images/youtube%20banner.jpeg',
+            'images/slut_hut.jpeg',
+            'images/trash.mp4',
+            'images/IMG_3411.jpeg',
+            'images/IMG_3431.jpeg',
+        ];
+
+        let current = null;
+        while (urls.length) {
+            const url = urls.shift();
+            if (url.endsWith('.mp4')) {
+                current = this.getVideo(url, anim, current);
+            } else {
+                current = this.getImage(url, anim, current);
+            }
+        }
+        return current;
+    }
+
+    getVideo(url, anim, current) {
+        return <Fragment>
+            {current ? current : ''}
+            <Col s={6} l={4}>
+                <Video layer="primary" show={anim.entered} className={'grid-image'} vidProps={{
+                    muted: 'muted',
+                    autoPlay: 'autoplay',
+                    loop: 'loop',
+                    playsInline: true
+                }}>
+                    <source src={url} type="video/mp4"/>
+                </Video>
+            </Col>
+        </Fragment>;
+    }
+
+    getImage(url, anim, current) {
+        return <Fragment>
+            {current ? current : ''}
+            <Col s={6} l={4}>
+                <Image layer="primary" animate show={anim.entered} className={'grid-image'} resources={url}/>
+            </Col>
+        </Fragment>;
+    }
+
     openHobbies() {
         if (this.state.modal) {
             this.modals.push(this.state.modal);
         }
         this.setState({
-            modal: <Modal title='HOBBY PROJECTS' close={() => this.close()}>
+            modal: <Modal title="HOBBY PROJECTS" close={() => this.close()}>
                 {anim => (
                     <div>
                         <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                             {anim => (
                                 <Fragment>
-                                    <Project show={anim.entered} animate header='NEOGUTENBERG' style={{margin: '0 auto 2rem'}}
+                                    <Project show={anim.entered} animate header="NEOGUTENBERG" style={{margin: '0 auto 2rem'}}
                                              header2={<Link onClick={() => open('https://atnpgo.wtf/NeoGutenberg/')}><Words animate show={anim.entered}>VISIT SITE</Words></Link>}>
                                         {anim => (
                                             <p><Words animate show={anim.entered}>
@@ -513,81 +584,29 @@ class ModalHolder extends React.Component {
                                     <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                         {anim => (
                                             <Fragment>
-                                                <Project show={anim.entered} animate header='PLEX CINEMA EXPERIENCE PREROLL' style={{margin: '2rem auto'}}
-                                                         header2={<Link onClick={() => open('https://github.com/atnpgo/Plex-Cinema-Experience-Preroll')}>
+                                                <Project show={anim.entered} animate header="JQUERY MOBILE SCHEDULER" style={{margin: '2rem auto'}}
+                                                         header2={<Link onClick={() => open('https://github.com/Oproma/jQuery.MobileScheduler')}>
                                                              <Words animate show={anim.entered}>VISIT SITE</Words></Link>}>
                                                     {anim => (
                                                         <p><Words animate show={anim.entered}>
-                                                            Replicate the experience of watching a film at the movie theater from the comfort of your own home. Leverages Plex and
-                                                            Tautulli features to automatically generate pre-show entertainment.
+                                                            jQuery.MobileScheduler is a mobile web component replicating the front-end functionality of a calendaring
+                                                            application.
                                                         </Words></p>
                                                     )}
                                                 </Project>
                                                 <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
                                                     {anim => (
-                                                        <Fragment>
-                                                            <Project show={anim.entered} animate header='JQUERY MOBILE SCHEDULER' style={{margin: '2rem auto'}}
-                                                                     header2={<Link onClick={() => open('https://github.com/Oproma/jQuery.MobileScheduler')}>
-                                                                         <Words animate show={anim.entered}>VISIT SITE</Words></Link>}>
-                                                                {anim => (
-                                                                    <p><Words animate show={anim.entered}>
-                                                                        jQuery.MobileScheduler is a phone component replicating the front-end functionality of a calendaring
-                                                                        application.
-                                                                    </Words></p>
-                                                                )}
-                                                            </Project>
-                                                            <Animation animate={true} show={anim.entered} timeout={ANIMATION_TIME}>
-                                                                {anim => (
-                                                                    <Fragment>
-                                                                        <Project show={anim.entered} animate header='CULINARY' style={{margin: '2rem auto'}}>
-                                                                            {anim => (
-                                                                                <Fragment>
-                                                                                    <Image layer='primary' animate show={anim.entered} resources='/images/IMG_3431.jpeg'>
-                                                                                        <p><Words animate show={anim.entered}>
-                                                                                            A loaf of bread baked from scratch. Flour, water, yeast, salt, heat and vapour.
-                                                                                        </Words></p>
-                                                                                    </Image>
-                                                                                    <Image layer='primary' animate show={anim.entered} resources='/images/IMG_3411.jpeg'>
-                                                                                        <p><Words animate show={anim.entered}>
-                                                                                            Bacon-mozzarella grilled cheese sandwich made from the previous loaf of bread.
-                                                                                        </Words></p>
-                                                                                    </Image>
-                                                                                    <Image layer='primary' animate show={anim.entered} resources='/images/steak.jpg'>
-                                                                                        <p><Words animate show={anim.entered}>
-                                                                                            Steak sous-vide, finished in a cast iron pan.
-                                                                                        </Words></p>
-                                                                                    </Image>
-                                                                                </Fragment>
-                                                                            )}
-                                                                        </Project>
-                                                                        <Project header='DIGITAL ARTS' style={{margin: '0 auto'}}>
-                                                                            <Image layer='primary' resources='/images/hangman-bubbly.jpeg'>
-                                                                                <p>Fake western movie poster themed with characters from All Elite Wrestling.</p>
-                                                                            </Image>
-                                                                            <Image layer='primary' resources='/images/youtube%20banner.jpeg'>
-                                                                                <p>YouTube banner.</p>
-                                                                            </Image>
-                                                                            <Image layer='primary' resources='/images/slut_hut.jpeg'>
-                                                                                <p>Vaporwave themed poster for a community wrestling event in-game.</p>
-                                                                            </Image>
-                                                                            <Video layer='primary' caption={'Vaporwave aestethic video vignette.'} vidProps={{
-                                                                                muted: 'muted',
-                                                                                autoPlay: 'autoplay',
-                                                                                loop: 'loop',
-                                                                                playsInline: true
-                                                                            }}>
-                                                                                <source src='/images/trash.mp4' type='video/mp4'/>
-                                                                            </Video>
-                                                                        </Project>
-                                                                    </Fragment>
-                                                                )}
-                                                            </Animation>
-                                                        </Fragment>
+                                                        <Project show={anim.entered} animate header="GALLERY" style={{margin: '2rem auto'}}>
+                                                            {anim => (<Row style={{marginBottom: 0}}>
+                                                                {this.getNext(anim)}
+                                                            </Row>)}
+                                                        </Project>
                                                     )}
                                                 </Animation>
                                             </Fragment>
                                         )}
                                     </Animation>
+
                                 </Fragment>
                             )}
                         </Animation>

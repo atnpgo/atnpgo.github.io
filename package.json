@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "arwes": "1.0.0-alpha.5",
+    "basiclightbox": "^5.0.4",
     "howler": "2.2.3",
     "moment": "2.29.1",
     "node-sass": "6.0.1",

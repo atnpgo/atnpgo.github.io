@@ -444,6 +444,40 @@ li::before {
   top: -0.325rem;
 }
 
+.ring {
+  position: absolute;
+  top: 130px;
+  bottom: calc(2.9rem + 26vmin);
+  right: 4vmin;
+  left: 4vmin;
+  border-radius: 10%/50%;
+  border-right: 4px #761100 solid;
+  border-left: 4px #761100 solid;
+  transition: transform ease-in-out 2s;
+  transform: scaleX(3);
+}
+.ring.focus {
+  transform: scaleX(1);
+}
+@media (max-width: 735px) {
+  .ring {
+    display: none !important;
+  }
+}
+
+.grid-image img, .grid-image video {
+  cursor: pointer;
+  object-fit: cover;
+  width: 100%;
+  overflow: hidden;
+  height: calc(50vw - 4.5rem - 59px);
+}
+@media (min-width: 993px) {
+  .grid-image img, .grid-image video {
+    height: 205px;
+  }
+}
+
 /**************************************
  *  Font faces                        *
  **************************************/

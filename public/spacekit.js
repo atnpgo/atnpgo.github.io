@@ -58897,15 +58897,11 @@ var Spacekit = (function (exports) {
                 object.traverse(child => {
                     if (child instanceof Mesh) {
                         const material = new MeshStandardMaterial({
-                            color: this._options.shape.color || 0xcccccc,
+                            map: new TextureLoader().load(this._options.shape.textureUrl),
+                            side: FrontSide
                         });
                         child.material = material;
                         child.geometry.scale(0.05, 0.05, 0.05);
-                        /*
-	          child.geometry.computeFaceNormals();
-	          child.geometry.computeVertexNormals();
-	          child.geometry.computeBoundingBox();
-	         */
                         this._materials.push(material);
                     }
                 });
