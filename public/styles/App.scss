@@ -28,6 +28,7 @@ $facebook: #3B5998;
 $reddit: #FF4500;
 $twitch: #6441A4;
 $twitter: #1DA1F2;
+$tiktok: #69C9D0;
 
 $font-family-base: 'exan-regular', 'monospace';
 
@@ -563,13 +564,13 @@ li::before {
         object-fit: cover;
         width: 100%;
         overflow: hidden;
-    
+        
         height: calc(50vw - 4.5rem - 59px);
-    
+        
         @media (min-width: 993px) {
             height: 205px;
         }
-    
+        
     }
 }
 
@@ -595,11 +596,11 @@ li::before {
 
 @font-face {
     font-family: 'icomoon';
-    src: url('fonts/icomoon.eot?uch75b');
-    src: url('fonts/icomoon.eot?uch75b#iefix') format('embedded-opentype'),
-    url('fonts/icomoon.ttf?uch75b') format('truetype'),
-    url('fonts/icomoon.woff?uch75b') format('woff'),
-    url('fonts/icomoon.svg?uch75b#icomoon') format('svg');
+    src:  url('fonts/icomoon.eot?w1vrra');
+    src:  url('fonts/icomoon.eot?w1vrra#iefix') format('embedded-opentype'),
+    url('fonts/icomoon.ttf?w1vrra') format('truetype'),
+    url('fonts/icomoon.woff?w1vrra') format('woff'),
+    url('fonts/icomoon.svg?w1vrra#icomoon') format('svg');
     font-weight: normal;
     font-style: normal;
     font-display: block;
@@ -620,13 +621,9 @@ li::before {
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-play:before {
-    content: "\e908";
-}
-
-.icon-twitch:before {
+.icon-tiktok:before {
     content: "\e900";
-    color: $twitch;
+    color: $tiktok;
 }
 
 .icon-reddit:before {
@@ -651,7 +648,7 @@ li::before {
 
 .icon-github:before {
     content: "\e905";
-    color: $github
+    color: $github;
 }
 
 .icon-snapchat:before {
@@ -662,4 +659,8 @@ li::before {
 .icon-instagram:before {
     content: "\e907";
     color: $instagram;
+}
+
+.icon-play:before {
+    content: "\e908";
 }

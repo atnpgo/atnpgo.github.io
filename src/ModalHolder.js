@@ -12,8 +12,8 @@ import Appear from './arwes/packages/arwes/src/Appear';
 import Image from './arwes/packages/arwes/src/Image';
 import Video from './arwes/packages/arwes/src/Video';
 import Heading from './arwes/packages/arwes/src/Heading';
-import * as basicLightbox from 'basiclightbox'
-import 'basiclightbox/dist/basicLightbox.min.css'
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
 
 const ANIMATION_TIME = 350;
 
@@ -77,6 +77,18 @@ class ModalHolder extends React.Component {
                                 </HoverButton>
                             </Col>
                             <Col s={12} m={6}>
+                                <HoverButton style={{marginBottom: '1rem'}} animate layer="tiktok" show={anim.entered} onClick={() => open('https://tiktok.com/@atnpgo')}>
+                                    {anim => (
+                                        <Fragment>
+                                            <Appear animate show={anim.entered}><i className={'icon-tiktok'} style={{marginRight: '0.5rem'}}/></Appear>
+                                            <Words animate show={anim.entered}>Tik Tok</Words>
+                                        </Fragment>
+                                    )}
+                                </HoverButton>
+                            </Col>
+                        </Row>
+                        <Row style={{marginBottom: 0}}>
+                            <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="snapchat" show={anim.entered} onClick={() => open('https://snapchat.com/add/atnpgo')}>
                                     {anim => (
                                         <Fragment>
@@ -86,8 +98,6 @@ class ModalHolder extends React.Component {
                                     )}
                                 </HoverButton>
                             </Col>
-                        </Row>
-                        <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="github" show={anim.entered} onClick={() => open('https://github.com/atnpgo')}>
                                     {anim => (
@@ -98,6 +108,8 @@ class ModalHolder extends React.Component {
                                     )}
                                 </HoverButton>
                             </Col>
+                        </Row>
+                        <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="linkedin" show={anim.entered}
                                              onClick={() => open('https://www.linkedin.com/in/etiennepageau/')}>
@@ -109,8 +121,6 @@ class ModalHolder extends React.Component {
                                     )}
                                 </HoverButton>
                             </Col>
-                        </Row>
-                        <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="youtube" show={anim.entered} onClick={() => open('https://youtube.atnpgo.wtf/')}>
                                     {anim => (
@@ -121,6 +131,8 @@ class ModalHolder extends React.Component {
                                     )}
                                 </HoverButton>
                             </Col>
+                        </Row>
+                        <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="twitter" show={anim.entered} onClick={() => open('https://twitter.atnpgo.wtf/')}>
                                     {anim => (
@@ -131,24 +143,12 @@ class ModalHolder extends React.Component {
                                     )}
                                 </HoverButton>
                             </Col>
-                        </Row>
-                        <Row style={{marginBottom: 0}}>
                             <Col s={12} m={6}>
                                 <HoverButton style={{marginBottom: '1rem'}} animate layer="reddit" show={anim.entered} onClick={() => open('https://www.reddit.com/user/ATNPGO')}>
                                     {anim => (
                                         <Fragment>
                                             <Appear animate show={anim.entered}><i className={'icon-reddit'} style={{marginRight: '0.5rem'}}/></Appear>
                                             <Words animate show={anim.entered}>Reddit</Words>
-                                        </Fragment>
-                                    )}
-                                </HoverButton>
-                            </Col>
-                            <Col s={12} m={6}>
-                                <HoverButton style={{marginBottom: '1rem'}} animate layer="twitch" show={anim.entered} onClick={() => open('https://www.twitch.tv/ATNPGO')}>
-                                    {anim => (
-                                        <Fragment>
-                                            <Appear animate show={anim.entered}><i className={'icon-twitch'} style={{marginRight: '0.5rem'}}/></Appear>
-                                            <Words animate show={anim.entered}>Twitch</Words>
                                         </Fragment>
                                     )}
                                 </HoverButton>

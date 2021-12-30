@@ -26,7 +26,8 @@ const THEME = {
         facebook: generateColor('#3B5998'),
         reddit: generateColor('#FF4500'),
         twitch: generateColor('#6441A4'),
-        twitter: generateColor('#1DA1F2')
+        twitter: generateColor('#1DA1F2'),
+        tiktok: generateColor('#69C9D0')
     },
 
     background: {
@@ -41,7 +42,8 @@ const THEME = {
         facebook: generateBackground('#283B66'),
         reddit: generateBackground('#FF4500'),
         twitch: generateBackground('#3E2966'),
-        twitter: generateBackground('#0C4466')
+        twitter: generateBackground('#0C4466'),
+        tiktok: generateBackground('#69C9D0')
     },
     alpha: 0.45,
     shadowLength: 12,
