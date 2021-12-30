@@ -495,8 +495,8 @@ li::before {
 }
 @font-face {
   font-family: "icomoon";
-  src: url("fonts/icomoon.eot?uch75b");
-  src: url("fonts/icomoon.eot?uch75b#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?uch75b") format("truetype"), url("fonts/icomoon.woff?uch75b") format("woff"), url("fonts/icomoon.svg?uch75b#icomoon") format("svg");
+  src: url("fonts/icomoon.eot?w1vrra");
+  src: url("fonts/icomoon.eot?w1vrra#iefix") format("embedded-opentype"), url("fonts/icomoon.ttf?w1vrra") format("truetype"), url("fonts/icomoon.woff?w1vrra") format("woff"), url("fonts/icomoon.svg?w1vrra#icomoon") format("svg");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -515,13 +515,9 @@ li::before {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-play:before {
-  content: "";
-}
-
-.icon-twitch:before {
+.icon-tiktok:before {
   content: "";
-  color: #6441A4;
+  color: #69C9D0;
 }
 
 .icon-reddit:before {
@@ -557,6 +553,10 @@ li::before {
 .icon-instagram:before {
   content: "";
   color: #E4405F;
+}
+
+.icon-play:before {
+  content: "";
 }
 
 /*# sourceMappingURL=App.css.map */
